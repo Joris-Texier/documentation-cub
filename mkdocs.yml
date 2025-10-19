@@ -3,6 +3,8 @@ site_url: https://joris-texier.github.io/documentation-cub/
 theme:
   name: material
   language: fr
+  features:
+    - content.code.copy
   palette:
     primary: indigo
     accent: blue
