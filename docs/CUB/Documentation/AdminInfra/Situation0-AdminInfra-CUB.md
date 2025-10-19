@@ -1,5 +1,5 @@
 # Situation0 - AdminInfra - CUB
-![logo CUB](../../media/0.png){ align=center width="700" }
+![logo CUB](../../media/0.png){ align=center width="250" }
 
 ## Mise en place de l’infrastructure réseau des agences de l’entreprise CUB  
 
