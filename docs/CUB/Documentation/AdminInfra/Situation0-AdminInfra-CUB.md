@@ -82,19 +82,19 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 
 ### Schéma logique
 
-![Schéma logique](../media/1.png){ align=center width="700" }
+![Schéma logique](../../media/1.png){ align=center width="700" }
 
 ---
 
 ### Schéma physique
 
-![Schéma physique](../media/2.png){ align=center width="700" }
+![Schéma physique](../../media/2.png){ align=center width="700" }
 
 ---
 
 ### Schéma de câblage
 
-![Schéma de câblage](../media/3.png){ align=center width="700" }
+![Schéma de câblage](../../media/3.png){ align=center width="700" }
 
 ---
 
@@ -114,7 +114,7 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 
 ### Pare-feu Stormshield
 
-![Pare-feu Stormshield](../media/4.png){ align=center width="700" }
+![Pare-feu Stormshield](../../media/4.png){ align=center width="700" }
 
 | Type | Réseau de destination | Masque | Passerelle | Interface |
 |------|-----------------------|---------|-------------|------------|
@@ -128,7 +128,7 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 
 ## Table de NAT – Pare-feu Stormshield
 
-![Table NAT](../media/5.png){ align=center width="700" }
+![Table NAT](../../media/5.png){ align=center width="700" }
 
 | Avant translation | Après translation |
 |-------------------|-------------------|
@@ -139,7 +139,7 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 
 ## Maquette Packet Tracer
 
-![Maquette Packet Tracer](../media/maquette-packet-tracer.png){ align=center width="700" }
+![Maquette Packet Tracer](../../media/maquette-packet-tracer.png){ align=center width="700" }
 
 ### Configuration des switchs et routeur CUB
 *(à insérer ici les commandes ou captures)*
