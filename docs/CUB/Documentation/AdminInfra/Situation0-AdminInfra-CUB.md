@@ -146,17 +146,22 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 ## Mise en place du prototypage
 
 ### Pare-feu Stormshield
-*(à compléter)*
 
 ### Routage
-*(à compléter)*
+![Routage](../../media/4.png){ align=center width="700" }
+
 
 ### NAT
-*(à compléter)*
+![NAT](../../media/5.png){ align=center width="700" }
+
 
 ---
 
 ## Test
-*(à compléter)*
+![test](../../media/6.png){ align=center width="700" }
+![test](../../media/7.png){ align=center width="700" }
+
+
 
 ---
+
