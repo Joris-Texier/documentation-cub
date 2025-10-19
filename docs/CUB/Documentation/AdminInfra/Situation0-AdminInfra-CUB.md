@@ -159,6 +159,7 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 
 ## Test
 ![test](../../media/6.png){ align=center width="700" }
+
 ![test](../../media/7.png){ align=center width="700" }
 
 
