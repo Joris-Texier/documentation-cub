@@ -8,7 +8,7 @@ theme:
     accent: blue
 nav:
   - Accueil: index.md
-  - Situation 1 - AdminSys CUB: situation1-adminsys-cub.md
+  - 
 markdown_extensions:
   - toc:
       permalink: true
