@@ -10,7 +10,7 @@ theme:
 nav:
   - Accueil: index.md
   - CUB: CUB/index.md
-
+       - Administration des infrastructures : CUB/AdminInfra/index.md
 markdown_extensions:
   - toc:
       permalink: true
