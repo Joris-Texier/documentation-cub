@@ -1,4 +1,4 @@
-site_name: Documentation CUB
+site_name: Le contexte CUB
 site_url: https://joris-texier.github.io/documentation-cub/
 theme:
   name: material
@@ -8,7 +8,6 @@ theme:
     accent: blue
 
 nav:
-  - Accueil: index.md
   - CUB:
       - Contexte:
           - Présentation du contexte CUB: CUB/Contexte/01-presentation.md
