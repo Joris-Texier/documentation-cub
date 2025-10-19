@@ -9,8 +9,13 @@ theme:
 
 nav:
   - Accueil: index.md
-  - CUB: CUB/index.md
-       - Administration des infrastructures : CUB/AdminInfra/index.md
+  - CUB:
+      - Introduction: CUB/index.md
+      - Administration des infrastructures: CUB/AdminInfra/index.md
+      - Administration des services: CUB/AdminServ/index.md
+      - Administration des systèmes: CUB/AdminSys/index.md
+      - Cybersécurité: CUB/Cybersécurité/index.md
+
 markdown_extensions:
   - toc:
       permalink: true
