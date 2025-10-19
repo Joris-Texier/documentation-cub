@@ -1,14 +1,17 @@
 site_name: Documentation CUB
-site_url: https://Joris-Texier.github.io/documentation-cub/
+site_url: https://joris-texier.github.io/documentation-cub/
 theme:
   name: material
   language: fr
   palette:
     primary: indigo
     accent: blue
+
 nav:
   - Accueil: index.md
   - CUB:
+      - Présentation: CUB/index.md
+
 markdown_extensions:
   - toc:
       permalink: true
