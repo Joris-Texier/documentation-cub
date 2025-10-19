@@ -12,4 +12,8 @@ Le siège social de CUB est situé à Paris, des agences sont implantées dans p
 
 La direction des systèmes d’information (DSI), située à Paris, participe étroitement aux choix stratégiques de CUB, elle a pour mission de définir et mettre en œuvre la politique informatique en accord avec la stratégie générale et ses objectifs de performance. 
 
+<<<<<<< HEAD
 Le siège social est le cœur du système d’information interne de CUB, mais un service informatique de proximité (SIP) est présent sur chaque agence. Le SIP est responsable de l’assistance aux utilisateurs locaux et de la maintenance des ressources locales (infrastructure réseau et serveurs). Le SIP prend également en charge des projets qui concernent ponctuellement leur site.
+=======
+Le siège social est le cœur du système d’information interne de CUB, mais un service informatique de proximité (SIP) est présent sur chaque agence. Le SIP est responsable de l’assistance aux utilisateurs locaux et de la maintenance des ressources locales (infrastructure réseau et serveurs). Le SIP prend également en charge des projets qui concernent ponctuellement leur site.
+>>>>>>> a1ce9f3c158bacf36692cc04dcdb224f2dc93cc3
