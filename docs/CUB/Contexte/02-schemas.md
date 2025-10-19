@@ -4,7 +4,7 @@ L'entreprise CUB dispose d'une infrastructure complexe avec un site central et d
 
 ## Schéma réseau physique
 
-![Schéma physique CUB](../media/cub/schemaphysique.png)
+![Schéma physique CUB](../media/schemaphysique.png)
 
 ## Schéma réseau logique
 
