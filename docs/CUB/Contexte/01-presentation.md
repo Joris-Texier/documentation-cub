@@ -1,6 +1,7 @@
 # Présentation du contexte CUB
 
-![Présentation du contexte CUB](/CUB/Contexte/cub.png){ width="350" }
+<img src="cub.png" alt="Présentation du contexte CUB" width="350" style="display:block; margin:auto;"/>
+
 	
 Née en décembre 2010, la société CUB est une entreprise spécialisée dans l’incubation de startups partageant les mêmes valeurs de solidarité et de développement durable. Au travers de sa plate-forme web, CUB permet à des professionnels d’accéder à des espaces de travail dédiés : salles de réunion, de formation ou de séminaire.
 
