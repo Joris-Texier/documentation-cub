@@ -11,6 +11,7 @@ nav:
   - CUB:
       - Contexte:
           - Présentation du contexte CUB: CUB/Contexte/01-presentation.md
+          - Schéma réseau de l'entreprise CUB: CUB/Contexte/02-schemas.md
       - Documentation:
           - Administration des infrastructures: CUB/Documentation/AdminInfra/index.md
           - Administration des services: CUB/Documentation/AdminServ/index.md
