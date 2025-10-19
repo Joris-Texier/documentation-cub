@@ -10,10 +10,10 @@ theme:
 nav:
   - Accueil: index.md
   - CUB:
-      - Administration des infrastructures: CUB/AdminInfra/index.md
-      - Administration des services: CUB/AdminServ/index.md
-      - Administration des systèmes: CUB/AdminSys/index.md
-      - Cybersécurité: CUB/Cybersécurité/index.md
+      - Administration des infrastructures: CUB/Documentation/AdminInfra/index.md
+      - Administration des services: CUB/Documentation/AdminServ/index.md
+      - Administration des systèmes: CUB/Documentation/AdminSys/index.md
+      - Cybersécurité: CUB/Documentation/Cybersécurité/index.md
 
 markdown_extensions:
   - toc:
