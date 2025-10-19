@@ -10,8 +10,8 @@ theme:
 nav:
   - Accueil: index.md
   - CUB:
-      - Contexte: CUB/Contexte/index.md
-          - Présentation du contexte CUB : CUB/Contexte/01-presentation.md
+      - Contexte:
+          - Présentation du contexte CUB: CUB/Contexte/01-presentation.md
       - Documentation:
           - Administration des infrastructures: CUB/Documentation/AdminInfra/index.md
           - Administration des services: CUB/Documentation/AdminServ/index.md
