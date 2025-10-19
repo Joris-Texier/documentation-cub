@@ -10,7 +10,6 @@ theme:
 nav:
   - Accueil: index.md
   - CUB:
-      - Présentation: CUB/index.md
 
 markdown_extensions:
   - toc:
