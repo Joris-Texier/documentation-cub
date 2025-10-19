@@ -138,7 +138,8 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 ## Maquette Packet Tracer
 
 ### Configuration des switchs et routeur CUB
-*(à insérer ici les commandes ou captures)*
+[Configuration des switch et routeur CUB](https://drive.google.com/drive/folders/1GXBigqVqaa86_AFHlSA7-2rDH3MePCTA?usp=sharing){:target="_blank"}
+
 
 ---
 
