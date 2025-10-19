@@ -1,0 +1,19 @@
+site_name: Documentation CUB
+site_url: https://tonpseudo.github.io/cub-docs/
+theme:
+  name: material
+  language: fr
+  palette:
+    primary: indigo
+    accent: blue
+nav:
+  - Accueil: index.md
+  - Situation 1 - AdminSys CUB: situation1-adminsys-cub.md
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+  - codehilite
+  - footnotes
+  - attr_list
