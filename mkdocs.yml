@@ -13,6 +13,7 @@ nav:
           - Présentation du contexte CUB: CUB/Contexte/01-presentation.md
           - Schéma réseau de l'entreprise CUB: CUB/Contexte/02-schemas.md
           - Description de l'infrastructure: CUB/Contexte/03-infra.md
+          - Référentiel défini par la DSI: CUB/Contexte/bonnespratiques.md
       - Documentation:
           - Administration des infrastructures: CUB/Documentation/AdminInfra/index.md
           - Administration des services: CUB/Documentation/AdminServ/index.md
