@@ -9,7 +9,7 @@ theme:
 
 nav:
   - Accueil: index.md
-  - CUB:
+  - CUB: CUB/index.md
 
 markdown_extensions:
   - toc:
