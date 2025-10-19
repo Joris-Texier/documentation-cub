@@ -17,9 +17,11 @@ nav:
       - Documentation:
           - Administration des infrastructures:
               - Situation0 - AdminInfra - CUB: CUB/Documentation/AdminInfra/Situation0-AdminInfra-CUB.md
-          - Administration des services: CUB/Documentation/AdminServ/index.md
-              - Situation1 - AdminServ -CUB: CUB/Documentation/AdminServ/Situation1-AdminServ-CUB.md
+          - Administration des services:
+              - Situation1 - AdminServ - CUB: CUB/Documentation/AdminServ/Situation1-AdminServ-CUB.md
+
           - Administration des systèmes: CUB/Documentation/AdminSys/index.md
+
           - Cybersécurité: CUB/Documentation/Cybersécurité/index.md
 
 markdown_extensions:
