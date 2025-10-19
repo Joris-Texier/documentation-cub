@@ -8,7 +8,6 @@ theme:
     accent: blue
 nav:
   - Accueil: index.md
-  - 
 markdown_extensions:
   - toc:
       permalink: true
