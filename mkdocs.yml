@@ -15,7 +15,9 @@ nav:
           - Description de l'infrastructure: CUB/Contexte/03-infra.md
           - Référentiel défini par la DSI: CUB/Contexte/bonnespratiques.md
       - Documentation:
-          - Administration des infrastructures: CUB/Documentation/AdminInfra/index.md
+          - Administration des infrastructures:
+              - Introduction: CUB/Documentation/AdminInfra/index.md
+              - Situation0 - AdminInfra - CUB: CUB/Documentation/AdminInfra/Situation0-AdminInfra-CUB.md
           - Administration des services: CUB/Documentation/AdminServ/index.md
           - Administration des systèmes: CUB/Documentation/AdminSys/index.md
           - Cybersécurité: CUB/Documentation/Cybersécurité/index.md
