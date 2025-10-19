@@ -1,4 +1,5 @@
 # Situation0 - AdminInfra - CUB
+![Schéma logique](../../media/1.png){ align=center width="700" }
 
 ## Mise en place de l’infrastructure réseau des agences de l’entreprise CUB  
 
@@ -114,7 +115,6 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 
 ### Pare-feu Stormshield
 
-![Pare-feu Stormshield](../../media/4.png){ align=center width="700" }
 
 | Type | Réseau de destination | Masque | Passerelle | Interface |
 |------|-----------------------|---------|-------------|------------|
@@ -127,8 +127,6 @@ Pour pouvoir déterminer le plan d’adressage, on va se servir de ce tableau af
 ---
 
 ## Table de NAT – Pare-feu Stormshield
-
-![Table NAT](../../media/5.png){ align=center width="700" }
 
 | Avant translation | Après translation |
 |-------------------|-------------------|
