@@ -191,4 +191,4 @@ Get-Acl "C:\Partage" | Format-List
 
 ---
 
-**Fin du document – Introduction à PowerShell et gestion des droits utilisateurs**
+
