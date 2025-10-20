@@ -11,12 +11,14 @@ theme:
 
 nav:
   - Accueil: index.md
+
   - CUB:
       - Contexte:
           - Présentation du contexte CUB: CUB/Contexte/01-presentation.md
           - Schéma réseau de l'entreprise CUB: CUB/Contexte/02-schemas.md
           - Description de l'infrastructure: CUB/Contexte/03-infra.md
           - Référentiel défini par la DSI: CUB/Contexte/bonnespratiques.md
+
       - Documentation:
           - Administration des infrastructures:
               - Situation0 - AdminInfra - CUB: CUB/Documentation/AdminInfra/Situation0-AdminInfra-CUB.md
@@ -32,10 +34,21 @@ nav:
               - Situation3 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation3-Cyber-CUB.md
               - Situation4 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation4-Cyber-CUB.md
 
-  - AP: []
+  - AP:
+      - Contexte:
+          - Contexte général EPOKA: AP/Contexte/AP-Contexte.md
+          - Contexte SP0: AP/Documentation/SP0/SP0-Contexte.md
+          - Contexte SP2: AP/Documentation/SP2/SP2-Contexte.md
 
-
-
+      - Documentation:
+          - SP0:
+              - Mission 1 - Adapter le plan d’adressage: AP/Documentation/SP0/Mission1/SP0_Mission1_Adapter.md
+              - Mission 2 - AD DHCP: AP/Documentation/SP0/Mission2/SP0-Mission2-AD_DHCP.md
+              - Mission 3 - NAS: AP/Documentation/SP0/Mission3/SP0-Mission3-NAS.md
+              - Mission 4 - GLPI: AP/Documentation/SP0/Mission4/SP0-Mission4-GLPI.md
+          - SP2:
+              - Mission 1: AP/Documentation/SP2/Mission1/index.md
+              - Mission 2: AP/Documentation/SP2/Mission2/index.md
 
 markdown_extensions:
   - toc:
@@ -45,4 +58,3 @@ markdown_extensions:
   - codehilite
   - footnotes
   - attr_list
-
