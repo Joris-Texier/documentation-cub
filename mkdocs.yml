@@ -30,6 +30,8 @@ nav:
 
           - Cybersécurité:
               - Situation1 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation1-Cyber-CUB.md
+              - Situation2 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation2-Cyber-CUB.md
+
 
 markdown_extensions:
   - toc:
