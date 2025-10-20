@@ -23,13 +23,13 @@
 ---
 
 ## Installation des 3 VM et paramétrages de leurs cartes réseaux
-![logo cub0](../../media/73.png){ align=center width="700" }
+![logo cub0](../../media/76.png){ align=center width="700" }
 
 
 ---
 
 ## Renommage du pare-feu
-![logo cub0](../../media/74.png){ align=center width="700" }
+![logo cub0](../../media/77.png){ align=center width="700" }
 
 
 ---
@@ -40,17 +40,17 @@
 |----------|--------|
 | **Login** | admin |
 | **Mot de passe** | admin |
-![logo cub0](../../media/75.png){ align=center width="700" }
+![logo cub0](../../media/78.png){ align=center width="700" }
 
 ---
 
 ## Fuseau horaire : Europe/Paris
 
 Le pare-feu doit être configuré sur le fuseau horaire **Europe/Paris**.
-![logo cub0](../../media/76.png){ align=center width="700" }
+![logo cub0](../../media/79.png){ align=center width="700" }
   
 Une fois la modification effectuée, **redémarrer le pare-feu** pour appliquer les changements.
-![logo cub0](../../media/77.png){ align=center width="700" }
+![logo cub0](../../media/80.png){ align=center width="700" }
 
 ---
 
@@ -68,13 +68,13 @@ La synchronisation des pare-feu de l'entreprise CUB sur les **serveurs NTP de St
 ---
 
 ## Configuration des interfaces réseaux
-![logo cub0](../../media/78.png){ align=center width="700" }
+![logo cub0](../../media/81.png){ align=center width="700" }
 
 
 ---
 
 ## Filtrage NAT
-![logo cub0](../../media/79.png){ align=center width="700" }
+![logo cub0](../../media/82.png){ align=center width="700" }
 
 
 ---
