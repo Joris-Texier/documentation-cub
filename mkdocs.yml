@@ -1,4 +1,4 @@
-site_name: Le contexte CUB
+site_name: Le contexte CUB et AP
 site_url: https://joris-texier.github.io/documentation-cub/
 theme:
   name: material
@@ -10,6 +10,7 @@ theme:
     accent: blue
 
 nav:
+  - Accueil: index.md
   - CUB:
       - Contexte:
           - Présentation du contexte CUB: CUB/Contexte/01-presentation.md
@@ -34,9 +35,6 @@ nav:
               - Situation3 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation3-Cyber-CUB.md
               - Situation4 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation4-Cyber-CUB.md
 
-
-
-
 markdown_extensions:
   - toc:
       permalink: true
@@ -45,3 +43,4 @@ markdown_extensions:
   - codehilite
   - footnotes
   - attr_list
+
