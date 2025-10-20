@@ -43,9 +43,10 @@ nav:
       - Documentation:
           - SP0:
               - Mission 1 - Adapter le plan d’adressage: AP/Documentation/SP0/Mission1/SP0_Mission1_Adapter.md
-              - Mission 2 - AD DHCP: AP/Documentation/SP0/Mission2/SP0-Mission2-AD_DHCP.md
-              - Mission 3 - NAS: AP/Documentation/SP0/Mission3/SP0-Mission3-NAS.md
-              - Mission 4 - GLPI: AP/Documentation/SP0/Mission4/SP0-Mission4-GLPI.md
+              - Mission 2 - Mise en place d’un serveur AD/DHCP: AP/Documentation/SP0/Mission2/SP0-Mission2-AD_DHCP.md
+              - Mission 3 - Mise en place d’un serveur NAS: AP/Documentation/SP0/Mission3/SP0-Mission3-NAS.md
+              - Mission 3 - Mise en place d’un serveur GLPI: AP/Documentation/SP0/Mission3/SP0-Mission3-GLPI.md
+              - Mission 4 - Documentation de l’architecture réseau: AP/Documentation/SP0/Mission4/SP0-Mission4-Architecture-Reseau.md
           - SP2:
               - Mission 1: AP/Documentation/SP2/Mission1/index.md
               - Mission 2: AP/Documentation/SP2/Mission2/index.md
