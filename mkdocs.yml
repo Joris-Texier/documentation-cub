@@ -28,7 +28,8 @@ nav:
               - Situation2 - AdminSys - CUB: CUB/Documentation/AdminSys/Situation2-AdminSys-CUB.md
               - Situation3 - AdminSys - CUB: CUB/Documentation/AdminSys/Situation3-AdminSys-CUB.md
 
-          - Cybersécurité: CUB/Documentation/Cybersécurité/index.md
+          - Cybersécurité:
+              - Situation1 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation1-Cyber-CUB.md
 
 markdown_extensions:
   - toc:
