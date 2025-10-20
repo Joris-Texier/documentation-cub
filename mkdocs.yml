@@ -21,6 +21,8 @@ nav:
               - Situation0 - AdminInfra - CUB: CUB/Documentation/AdminInfra/Situation0-AdminInfra-CUB.md
           - Administration des services:
               - Situation1 - AdminServ - CUB: CUB/Documentation/AdminServ/Situation1-AdminServ-CUB.md
+              - Situation2 - AdminServ - CUB: CUB/Documentation/AdminServ/Situation2-AdminServ-CUB.md
+
           - Administration des systèmes:
               - Situation1 - AdminSys - CUB: CUB/Documentation/AdminSys/Situation1-AdminSys-CUB.md
           - Cybersécurité: CUB/Documentation/Cybersécurité/index.md
