@@ -105,7 +105,8 @@ show ip ssh
 ## Algorithme de chiffremet utilisé par le serveur SSH
 
 L’algorithme de chiffrement utilisé par le serveur SSH est : **SHA256**
-![logo cub0](../../media/93.png){ align=center width="250" }
+
+![logo cub0](../../media/93.png){ align=center width="150" }
 
 ---
 
