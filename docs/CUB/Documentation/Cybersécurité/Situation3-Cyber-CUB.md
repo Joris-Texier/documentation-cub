@@ -68,6 +68,7 @@ Celui-ci permet de translater les adresses IP privées en adresses publiques.
 - **Ping 2 :** depuis la même machine hôte vers le **serveur DNS** (`192.36.6.11/24`) dans la DMZ publique.
   
 ![logo cub0](../../media/88.png){ align=center width="700" }
+
 ✅ Les tests doivent confirmer que la connectivité via le pare-feu et le NAT fonctionne correctement.
 
 ---
