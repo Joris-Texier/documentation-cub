@@ -73,8 +73,15 @@ La synchronisation des pare-feu de l'entreprise CUB sur les **serveurs NTP de St
 
 ---
 
-## Filtrage NAT
+## Routage
+![logo cub0](../../media/85.png){ align=center width="700" }
+
+--
+
+##Filtrage NAT
 ![logo cub0](../../media/82.png){ align=center width="700" }
+
+![logo cub0](../../media/86.png){ align=center width="700" }
 
 
 ---
