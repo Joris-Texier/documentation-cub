@@ -1,4 +1,4 @@
-# Bienvenue sur la documentation technique de Joris Texier 💻
+# Bienvenue sur la documentation technique de Joris Texier
 
 ## À propos
 
@@ -21,9 +21,10 @@ L’objectif est de centraliser toutes les informations liées à la mise en œu
 
 | Catégorie | Description |
 |------------|-------------|
-| 🧭 **Contexte CUB** | Présentation, schémas réseau, référentiel DSI et infrastructure |
-| 🖥️ **Documentation CUB** | Administration des infrastructures, des services, des systèmes et cybersécurité |
-| 📂 **Activités professionnelles (à venir)** | Études de cas, mises en situation, travaux pratiques liés aux AP |
+| **Contexte CUB** | Présentation, schémas réseau, référentiel DSI et infrastructure |
+| **Documentation CUB** | Administration des infrastructures, des services, des systèmes et cybersécurité |
+| **Contexte des AP (à venir)** | Présentation et environnement des activités professionnelles |
+| **Activités professionnelles (à venir)** | Études de cas, mises en situation, travaux pratiques liés aux AP |
 
 ---
 
@@ -35,7 +36,6 @@ _BTS SIO – Option SISR_
 
 ---
 
-> 💡 Ce site est propulsé par [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) et hébergé via [GitHub Pages](https://joris-texier.github.io/documentation-cub/).
+> Ce site est propulsé par [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) et hébergé via [GitHub Pages](https://joris-texier.github.io/documentation-cub/).
 
 ---
-
