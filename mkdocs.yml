@@ -36,9 +36,9 @@ nav:
 
   - AP:
       - Contexte:
-          - Contexte général EPOKA: AP/Contexte/AP-Contexte.md
-          - Contexte SP0: AP/Documentation/SP0/SP0-Contexte.md
-          - Contexte SP2: AP/Documentation/SP2/SP2-Contexte.md
+          - Contexte général EPOKA: AP/Contexte/Contexte AP/AP-Contexte.md
+          - Contexte SP0: AP/Contexte/Contexte SP0/SP0-Contexte.md
+          - Contexte SP2: AP/Contexte/Contexte SP2/SP2-Contexte.md
 
       - Documentation:
           - SP0:
