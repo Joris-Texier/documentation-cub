@@ -18,7 +18,7 @@ Vous devez rendre dès la première séance :
 - La **répartition des tâches** entre les membres de l’équipe.  
 - Les **dates prévisionnelles de livraison** de chaque mission.  
 
-Pour cela, vous utiliserez l’application en ligne **[Notion](https://www.notion.so)**.
+Pour cela, vous utiliserez l’application en ligne **[Notion](https://www.notion.so/265ade1f09c7817dab4ef77e031bdb73?v=265ade1f09c781fcac3e000c9071ab1c)**.
 
 **Nombre d’étudiants :** 1  
 **Nombre de séances pour la situation :** 3  
