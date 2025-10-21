@@ -1,11 +1,11 @@
-# 📘 Contexte – EPOKA PRESSE
+#  Contexte – EPOKA PRESSE
 ![logoEPOKA](../../media/logo.png){ align=center width="250" }
-## 🧩 Présentation du thème
+##  Présentation du thème
 **Ateliers de professionnalisation**
 
 ---
 
-## 📰 Présentation du contexte
+##  Présentation du contexte
 
 **EPOKA PRESSE** est une société de presse qui conçoit, réalise et publie des magazines vendus sur tout le territoire français (métropole et DOM-TOM).  
 Le dernier titre mis sur le marché par EPOKA PRESSE est le magazine mensuel **« SAVOIR VENDRE »**.  
@@ -18,7 +18,7 @@ Vous avez été recruté(e) afin de participer au **développement de cet intran
 
 ---
 
-## 🗂️ Vocabulaire utilisé
+## ️ Vocabulaire utilisé
 
 - **Magazine / Revue** : termes employés indifféremment.  
 - **Pigiste** : personne qui écrit des articles et qui est payée *à la pige*, c’est-à-dire à l’article.  
@@ -29,7 +29,7 @@ Vous avez été recruté(e) afin de participer au **développement de cet intran
 
 ---
 
-## 🧑‍💻 Composition des numéros
+## ‍ Composition des numéros
 
 ### Les acteurs
 
@@ -48,7 +48,7 @@ Chaque participant est décrit par :
 
 ---
 
-## 📝 Les articles
+##  Les articles
 
 L’**acceptation** d’un article par le comité de rédaction déclenche sa **mise en ligne** sur l’intranet.  
 L’article est alors **en attente de publication**.  
@@ -81,7 +81,7 @@ Le **coût de publication** dépend :
 
 ---
 
-## 📅 Les numéros de la revue
+##  Les numéros de la revue
 
 Un **numéro du magazine** est identifié par :
 - un **code**,  
@@ -106,5 +106,5 @@ Avant la mise en page finale, le numéro est complété par :
 
 ---
 
-📄 *AP3 – SIO2 : Contexte commun SISR / SLAM*  
-📚 *EPOKA PRESSE*
+ *AP – SIO2 : Contexte commun SISR / SLAM*  
+ *EPOKA PRESSE*
