@@ -32,7 +32,6 @@ L’objectif est de centraliser toutes les informations liées à la mise en œu
 
 **Joris Texier**  
 _BTS SIO – Option SISR_  
-📅 *Année 2025*  
 
 ---
 
