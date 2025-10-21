@@ -36,20 +36,20 @@ nav:
 
   - AP:
       - Contexte:
-          - Contexte général EPOKA: AP/Contexte/Contexte AP/AP-Contexte.md
-          - Contexte SP0: AP/Contexte/Contexte SP0/SP0-Contexte.md
-          - Contexte SP2: AP/Contexte/Contexte SP2/SP2-Contexte.md
+          - Contexte général EPOKA: AP/Contexte/Contexte AP/[]
+          - Contexte SP0: AP/Contexte/Contexte SP0/[]
+          - Contexte SP2: AP/Contexte/Contexte SP2/[]
 
       - Documentation:
           - SP0:
-              - Mission 1 - Adapter le plan d’adressage: AP/Documentation/SP0/Mission 1/SP0_Mission1_Adapter.md
-              - Mission 2 - Mise en place d’un serveur AD/DHCP: AP/Documentation/SP0/Mission 2/SP0-Mission2-AD_DHCP.md
-              - Mission 3 - Mise en place d’un serveur NAS: AP/Documentation/SP0/Mission 3/SP0-Mission3-NAS.md
-              - Mission 3 - Mise en place d’un serveur GLPI: AP/Documentation/SP0/Mission 3/SP0-Mission3-GLPI.md
-              - Mission 4 - Documentation de l’architecture réseau: AP/Documentation/SP0/Mission 4/SP0-Mission4-Architecture-Reseau.md
+              - Mission 1 - Adapter le plan d’adressage: AP/Documentation/SP0/Mission 1/[]
+              - Mission 2 - Mise en place d’un serveur AD/DHCP: AP/Documentation/SP0/Mission 2/[]
+              - Mission 3 - Mise en place d’un serveur NAS: AP/Documentation/SP0/Mission 3/[]
+              - Mission 3 - Mise en place d’un serveur GLPI: AP/Documentation/SP0/Mission 3/[]
+              - Mission 4 - Documentation de l’architecture réseau: AP/Documentation/SP0/Mission 4/[]
           - SP2:
-              - Mission 1: AP/Documentation/SP2/Mission 1/index.md
-              - Mission 2: AP/Documentation/SP2/Mission 2/index.md
+              - Mission 1: AP/Documentation/SP2/Mission 1/[]
+              - Mission 2: AP/Documentation/SP2/Mission 2/[]
 
 markdown_extensions:
   - toc:
