@@ -129,7 +129,7 @@ Les protocoles **NAT** (Network Address Translation) et **PAT** (Port Address Tr
 Le **PAT** associe plusieurs adresses locales à une seule adresse IP publique en ajoutant un **numéro de port unique** pour chaque connexion.
 
 > Nombre maximal de traductions NAT : **65 536 (port sur 16 bits)**.
-![logo EPOKA](../../media/0.png){ align=center width="700" }
+![logo EPOKA](../../media/0.jpg){ align=center width="700" }
 
 ---
 
@@ -160,6 +160,7 @@ La règle **NAPT (masquerading)** permet aux machines internes d’accéder à I
 ![logo EPOKA](../../media/9.png){ align=center width="700" }
   
 5. **Activer la politique**
+
 ![logo EPOKA](../../media/11.png){ align=center width="150" }
 
 ---
@@ -180,6 +181,6 @@ La règle **NAPT (masquerading)** permet aux machines internes d’accéder à I
 
 ## Document 3 – Extrait de l’architecture réseau attendue
 
-![logo EPOKA](../../media/13.png){ align=center width="700" }
+![logo EPOKA](../../media/13.jpg){ align=center width="700" }
 
 ---
