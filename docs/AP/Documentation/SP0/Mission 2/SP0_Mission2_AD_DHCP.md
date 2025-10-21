@@ -1,4 +1,4 @@
-# 🧱 Mission 2 – Mise en place d’un contrôleur de domaine et d’un service DHCP
+#  Mission 2 – Mise en place d’un contrôleur de domaine et d’un service DHCP
 
 ![logo EPOKA](../../../../media/logo.png){ align=center width="250" }
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 📋 Prérequis
+##  Prérequis
 
 | Élément | Valeur |
 |:--|:--|
@@ -37,7 +37,7 @@
 
 ---
 
-## ⚙️ Service Active Directory – DNS
+## ️ Service Active Directory – DNS
 
 ### Étape 1 : Configurer la carte réseau
 
@@ -144,7 +144,7 @@ Lancer le **Gestionnaire de serveur** pour préparer l’installation.
 
 ---
 
-## 💻 Script PowerShell d’importation Active Directory
+##  Script PowerShell d’importation Active Directory
 
 ### Étape 19 : Modifier le script
 - Définir le chemin du fichier `.csv` contenant les utilisateurs :  
@@ -187,7 +187,7 @@ Lancer le **Gestionnaire de serveur** pour préparer l’installation.
 
 ---
 
-## 🌐 Service DHCP – KEA (Debian 12)
+##  Service DHCP – KEA (Debian 12)
 
 ### Installation du serveur DHCP KEA
 ```bash
