@@ -194,7 +194,7 @@ Lancer le **Gestionnaire de serveur** pour préparer l’installation.
 sudo apt-get update
 sudo apt-get install kea-dhcp4-server
 ```
-![logo EPOKA](../../../../media/44.png){ align=center width="700" }
+![logo EPOKA](../../../../media/44.jpg){ align=center width="700" }
 
 Vérification du service :
 ```bash
