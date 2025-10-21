@@ -1,6 +1,8 @@
 # SP0 – Mission 1 : Adapter le plan d’adressage aux nouveaux besoins
 ![logo EPOKA](../../../../media/logo.png){ align=center width="250" }
+
 **Documentation AP – Groupe 6**  
+
 **Lahcen Yousri / Esteban Touzet / Joris Texier**
 
 ---
