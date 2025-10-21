@@ -1,5 +1,5 @@
 # 📘 Contexte – EPOKA PRESSE
-![logoEPOKA](../media/logo.png){ align=center width="250" }
+![logoEPOKA](../../media/logo.png){ align=center width="250" }
 ## 🧩 Présentation du thème
 **Ateliers de professionnalisation**
 
