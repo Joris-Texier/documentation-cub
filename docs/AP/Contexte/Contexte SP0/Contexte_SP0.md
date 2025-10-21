@@ -130,6 +130,7 @@ Le **PAT** associe plusieurs adresses locales à une seule adresse IP publique e
 
 > Nombre maximal de traductions NAT : **65 536 (port sur 16 bits)**.
 ![logo EPOKA](../../media/0.png){ align=center width="250" }
+
 ---
 
 ## Pare-feu Stormshield – Configuration du NAT dynamique
@@ -180,3 +181,5 @@ La règle **NAPT (masquerading)** permet aux machines internes d’accéder à I
 ## Document 3 – Extrait de l’architecture réseau attendue
 
 ![logo EPOKA](../../media/13.png){ align=center width="700" }
+
+---
