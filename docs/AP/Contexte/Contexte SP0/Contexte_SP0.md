@@ -129,7 +129,7 @@ Les protocoles **NAT** (Network Address Translation) et **PAT** (Port Address Tr
 Le **PAT** associe plusieurs adresses locales à une seule adresse IP publique en ajoutant un **numéro de port unique** pour chaque connexion.
 
 > Nombre maximal de traductions NAT : **65 536 (port sur 16 bits)**.
-![logo EPOKA](../../media/0.png){ align=center width="250" }
+![logo EPOKA](../../media/0.png){ align=center width="700" }
 
 ---
 
