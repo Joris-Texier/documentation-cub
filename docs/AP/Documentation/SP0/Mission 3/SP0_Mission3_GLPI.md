@@ -285,10 +285,10 @@ Créer deux machines virtuelles Windows pour les agents.
    ```
 ![logo EPOKA](../../../../media/107.png){ align=center width="700" }
 
-  ```
-  Cliquer sur forcer un inventaire et ensuite actualiser le serveur , répéter cette étape jusqu’a 
+  
+5. Cliquer sur forcer un inventaire et ensuite actualiser le serveur , répéter cette étape jusqu’a 
 ce que ceci apparait :
-  ```
+
 ![logo EPOKA](../../../../media/108.png){ align=center width="700" }
 
 
