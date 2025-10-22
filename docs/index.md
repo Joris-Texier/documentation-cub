@@ -23,8 +23,8 @@ L’objectif est de centraliser toutes les informations liées à la mise en œu
 |------------|-------------|
 | **Contexte CUB** | Présentation, schémas réseau, référentiel DSI et infrastructure |
 | **Documentation CUB** | Administration des infrastructures, des services, des systèmes et cybersécurité |
-| **Contexte des AP (à venir)** | Présentation et environnement des activités professionnelles |
-| **Activités professionnelles (à venir)** | Études de cas, mises en situation, travaux pratiques liés aux AP |
+| **Contexte des AP** | Présentation et environnement des activités professionnelles |
+| **Activités professionnelles** | Études de cas, mises en situation, travaux pratiques liés aux AP |
 
 ---
 
