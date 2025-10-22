@@ -1,38 +1,5 @@
 #  Mission 2 – Mise en place d’un contrôleur de domaine et d’un service DHCP
 
-## Sommaire
-
-- [Mission 2 – Mise en place d’un contrôleur de domaine et d’un service DHCP](#mission-2--mise-en-place-dun-contrleur-de-domaine-et-dun-service-dhcp)
-  - [Prérequis](#prrequis)
-    - [Plan d’adressage](#plan-dadressage)
-  - [️ Service Active Directory – DNS](#service-active-directory--dns)
-    - [Étape 1 : Configurer la carte réseau](#tape-1--configurer-la-carte-rseau)
-    - [Étape 2 : Ouvrir le gestionnaire de serveur](#tape-2--ouvrir-le-gestionnaire-de-serveur)
-    - [Étape 3 : Ajouter des rôles et des fonctionnalités](#tape-3--ajouter-des-rles-et-des-fonctionnalits)
-    - [Étape 4 : Type d’installation](#tape-4--type-dinstallation)
-    - [Étape 5 : Sélection du serveur](#tape-5--slection-du-serveur)
-    - [Étape 6 : Rôles de serveur](#tape-6--rles-de-serveur)
-    - [Étape 7 : Ajouter des fonctionnalités](#tape-7--ajouter-des-fonctionnalits)
-    - [Étape 8 : Sélectionner les fonctionnalités](#tape-8--slectionner-les-fonctionnalits)
-    - [Étape 9 : AD DS](#tape-9--ad-ds)
-    - [Étape 10 : Confirmer les sélections](#tape-10--confirmer-les-slections)
-    - [Étape 11 : Promouvoir le serveur en contrôleur de domaine](#tape-11--promouvoir-le-serveur-en-contrleur-de-domaine)
-    - [Étape 12 : Ajouter une nouvelle forêt](#tape-12--ajouter-une-nouvelle-fort)
-    - [Étape 13 : Options du contrôleur de domaine](#tape-13--options-du-contrleur-de-domaine)
-    - [Étape 14 : Options DNS](#tape-14--options-dns)
-    - [Étape 15 : Nom NetBIOS](#tape-15--nom-netbios)
-    - [Étape 16 : Chemins](#tape-16--chemins)
-    - [Étape 17 : Examiner les options](#tape-17--examiner-les-options)
-    - [Étape 18 : Vérification des prérequis](#tape-18--vrification-des-prrequis)
-  - [Script PowerShell d’importation Active Directory](#script-powershell-dimportation-active-directory)
-    - [Étape 19 : Modifier le script](#tape-19--modifier-le-script)
-    - [Étape 21 : Vérifier le bon fonctionnement du script](#tape-21--vrifier-le-bon-fonctionnement-du-script)
-    - [Étape 22 : Connexion avec un utilisateur créé](#tape-22--connexion-avec-un-utilisateur-cr)
-  - [Service DHCP – KEA (Debian 12)](#service-dhcp--kea-debian-12)
-    - [Installation du serveur DHCP KEA](#installation-du-serveur-dhcp-kea)
-    - [Configuration du serveur DHCP](#configuration-du-serveur-dhcp)
-    - [Redémarrer le service](#redmarrer-le-service)
-
 ![logo EPOKA](../../../../media/logo.png){ align=center width="250" }
 
 **Auteur :** Esteban Touzet  
