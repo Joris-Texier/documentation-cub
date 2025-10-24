@@ -11,7 +11,7 @@ theme:
     - navigation.instant
     - navigation.tabs
     - navigation.sections
-    - navigation.expand
+    # les menus seront fermés par défaut (pas de navigation.expand)
     - search.suggest
     - search.highlight
     - toc.integrate
