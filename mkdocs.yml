@@ -51,7 +51,7 @@ nav:
                   - Authentification TOTP sur Debian: CUB/Documentation/AdminServ/Linux/2--OTP.md
               - Versioning:
                   - Introduction à la gestion des révisions: CUB/Documentation/AdminServ/Versioning/1--Introduction.md
-                  - Gestion des versions Git: CUB/Documentation/AdminServ/Versioning/2--versionning et git.md
+                  - Gestion des versions Git: CUB/Documentation/AdminServ/Versioning/2--versioning et git.md
                   - Gestion des versions de /etc avec Etckeeper: CUB/Documentation/AdminServ/Versioning/3--Etckeeper.md
                   - Mise en place d'une documentation à l'aide de Markdown, Git, Mkdocs et Github: CUB/Documentation/AdminServ/Versioning/4--GithubPages.md
 
