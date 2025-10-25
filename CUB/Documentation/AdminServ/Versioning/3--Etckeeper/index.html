@@ -1,0 +1,1749 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://joris-texier.github.io/documentation-cub/CUB/Documentation/AdminServ/Versioning/3--Etckeeper/">
+      
+      
+        <link rel="prev" href="../2--versioning%20et%20git/">
+      
+      
+        <link rel="next" href="../4--GithubPages/">
+      
+      
+      <link rel="icon" href="../../../../../media/logo_site.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Gestion des versions de /etc avec Etckeeper - Le contexte CUB et AP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-pourquoi-mettre-en-place-une-gestion-de-versions-du-repertoire-etc" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../../../.." title="Le contexte CUB et AP" class="md-header__button md-logo" aria-label="Le contexte CUB et AP" data-md-component="logo">
+      
+  <img src="../../../../../media/logo_site.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Le contexte CUB et AP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gestion des versions de /etc avec Etckeeper
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Basculer en mode sombre"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Basculer en mode sombre" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../Contexte/01-presentation/" class="md-tabs__link">
+          
+  
+  
+  CUB
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../AP/Contexte/Contexte%20AP/Contexte_Epoka/" class="md-tabs__link">
+          
+  
+  
+  AP
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Le contexte CUB et AP" class="md-nav__button md-logo" aria-label="Le contexte CUB et AP" data-md-component="logo">
+      
+  <img src="../../../../../media/logo_site.png" alt="logo">
+
+    </a>
+    Le contexte CUB et AP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accueil
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    CUB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            CUB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contexte
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Contexte
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/01-presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation du contexte CUB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/02-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schéma réseau de l'entreprise CUB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/03-infra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Description de l'infrastructure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/bonnespratiques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Référentiel défini par la DSI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../AdminInfra/Situation0-AdminInfra-CUB/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Administration des infrastructures
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Administration des services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Administration des services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Situation1-AdminServ-CUB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Situation1 - AdminServ - CUB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../Linux/2--OTP/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Versioning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Versioning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1--Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction à la gestion des révisions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2--versioning%20et%20git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestion des versions Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Gestion des versions de /etc avec Etckeeper
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestion des versions de /etc avec Etckeeper
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-pourquoi-mettre-en-place-une-gestion-de-versions-du-repertoire-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pourquoi mettre en place une gestion de versions du répertoire /etc ?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-installation-detckeeper-sur-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Installation d'etckeeper sur Debian
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-choix-du-systeme-de-controle-de-version-vcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Choix du système de contrôle de version (VCS)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-integration-de-etckeeper-avec-le-gestionnaire-de-paquets-debian-apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Intégration de etckeeper avec le gestionnaire de paquets Debian APT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Intégration de etckeeper avec le gestionnaire de paquets Debian APT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-comment-cela-fonctionne" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Comment çela fonctionne ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-exemple-pratique" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Exemple pratique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-activation-ou-desactivation-des-commits-automatiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Activation ou désactivation des commits automatiques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gestion-des-metadonnees-et-des-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Gestion des métadonnées et des permissions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Gestion des métadonnées et des permissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-metadonnees-prises-en-charge" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Métadonnées prises en charge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-activation-de-la-gestion-avancee" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Activation de la gestion avancée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-bonnes-pratiques-pour-les-metadonnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Bonnes pratiques pour les métadonnées
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sauvegarde-et-restauration-des-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Sauvegarde et restauration des configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sauvegarde et restauration des configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-sauvegarder-le-repertoire-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Sauvegarder le répertoire /etc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-restaurer-la-configuration-avec-etckeeper" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Restaurer la configuration avec etckeeper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-restaurer-des-fichiers-ou-la-totalite-de-etc-avec-etckeeper" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Restaurer des fichiers ou la totalité de /etc avec etckeeper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-restaurer-tout-etc-a-un-etat-precedent" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Restaurer tout /etc à un état précédent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-restaurer-un-fichier-specifique" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Restaurer un fichier spécifique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-annuler-des-changements-non-commites" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.6 Annuler des changements non commités
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4--GithubPages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mise en place d'une documentation à l'aide de Markdown, Git, Mkdocs et Github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../AdminSys/Situation1-AdminSys-CUB/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Administration des systèmes
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Cybers%C3%A9curit%C3%A9/Situation1-Cyber-CUB/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Cybersécurité
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../../../AP/Contexte/Contexte%20AP/Contexte_Epoka/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    AP
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-pourquoi-mettre-en-place-une-gestion-de-versions-du-repertoire-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pourquoi mettre en place une gestion de versions du répertoire /etc ?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-installation-detckeeper-sur-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Installation d'etckeeper sur Debian
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-choix-du-systeme-de-controle-de-version-vcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Choix du système de contrôle de version (VCS)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-integration-de-etckeeper-avec-le-gestionnaire-de-paquets-debian-apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Intégration de etckeeper avec le gestionnaire de paquets Debian APT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Intégration de etckeeper avec le gestionnaire de paquets Debian APT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-comment-cela-fonctionne" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Comment çela fonctionne ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-exemple-pratique" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Exemple pratique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-activation-ou-desactivation-des-commits-automatiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Activation ou désactivation des commits automatiques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gestion-des-metadonnees-et-des-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Gestion des métadonnées et des permissions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Gestion des métadonnées et des permissions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-metadonnees-prises-en-charge" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Métadonnées prises en charge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-activation-de-la-gestion-avancee" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Activation de la gestion avancée
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-bonnes-pratiques-pour-les-metadonnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Bonnes pratiques pour les métadonnées
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sauvegarde-et-restauration-des-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Sauvegarde et restauration des configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sauvegarde et restauration des configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-sauvegarder-le-repertoire-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Sauvegarder le répertoire /etc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-restaurer-la-configuration-avec-etckeeper" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Restaurer la configuration avec etckeeper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-restaurer-des-fichiers-ou-la-totalite-de-etc-avec-etckeeper" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Restaurer des fichiers ou la totalité de /etc avec etckeeper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-restaurer-tout-etc-a-un-etat-precedent" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Restaurer tout /etc à un état précédent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-restaurer-un-fichier-specifique" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Restaurer un fichier spécifique
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-annuler-des-changements-non-commites" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.6 Annuler des changements non commités
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gestion-des-versions-de-etc-avec-etckeeper">Gestion des versions de /etc avec Etckeeper<a class="headerlink" href="#gestion-des-versions-de-etc-avec-etckeeper" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<p>Cette documentation est issue du <a href="https://blog.stephane-robert.info/docs/outils/systeme/etckeeper/">site</a> de Stéphane Robert, spécialiste de la culture DevOps et DevSecOps. Elle a ainsi été retranscrite ici après obtention préalable de son accord. </p>
+</div>
+<h2 id="1-pourquoi-mettre-en-place-une-gestion-de-versions-du-repertoire-etc">1. Pourquoi mettre en place une gestion de versions du répertoire /etc ?<a class="headerlink" href="#1-pourquoi-mettre-en-place-une-gestion-de-versions-du-repertoire-etc" title="Permanent link">&para;</a></h2>
+<p>Le répertoire <strong>/etc</strong> contient l’ensemble des fichiers de configuration système sur une machine Linux. Cela inclut des éléments aussi critiques que la configuration réseau, les comptes utilisateurs, les services démarrés au boot, les règles de sécurité et bien plus encore. Si un fichier est accidentellement modifié ou supprimé, les conséquences peuvent être lourdes : panne réseau, impossibilité de démarrer des services essentiels, voire blocage complet du serveur.</p>
+<p>C’est ici que <strong>gérer les versions du répertoire /etc avec Git via etckeeper prend tout son sens</strong>. Voici pourquoi :</p>
+<ul>
+<li><strong>Historique complet des changements</strong> : chaque modification est enregistrée, datée et associée à un auteur. Cela me permet d’identifier facilement quand et pourquoi un changement a été fait.</li>
+<li><strong>Retour en arrière simplifié</strong> : en cas de problème, je peux restaurer rapidement une ancienne version d’un fichier ou de l’ensemble du répertoire.</li>
+<li><strong>Audit facilité</strong> : lors d’une analyse de sécurité, pouvoir montrer un historique clair de la configuration est un vrai plus.</li>
+<li><strong>Travail en équipe sécurisé</strong> : sur des systèmes gérés par plusieurs administrateurs, cela permet d’éviter des conflits ou des erreurs silencieuses.</li>
+<li><strong>Sauvegarde efficace</strong> : même si ce n’est pas une sauvegarde complète du système, garder une copie versionnée de /etc est un élément clé d’une bonne stratégie de sauvegarde des fichiers <em>/etc</em>.</li>
+</ul>
+<h2 id="2-installation-detckeeper-sur-debian">2. Installation d'etckeeper sur Debian<a class="headerlink" href="#2-installation-detckeeper-sur-debian" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>etckeeper
+</code></pre></div>
+<p>Vérification de la présence d'etckeeper sur le système</p>
+<div class="highlight"><pre><span></span><code>etckeeper<span class="w"> </span>--version
+</code></pre></div>
+<h2 id="3-choix-du-systeme-de-controle-de-version-vcs">3. Choix du système de contrôle de version (VCS)<a class="headerlink" href="#3-choix-du-systeme-de-controle-de-version-vcs" title="Permanent link">&para;</a></h2>
+<p>Par défaut, Git est utilisé, ce qui est parfait pour la majorité des besoins. Si je souhaite utiliser un autre VCS (comme Mercurial ou Bazaar), je peux modifier la ligne suivante :</p>
+<div class="highlight"><pre><span></span><code>sudoedit<span class="w"> </span>/etc/etckeeper/etckeeper.conf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">VCS</span><span class="o">=</span><span class="s2">&quot;git&quot;</span>
+</code></pre></div>
+<p>Il est nécessaire (si cela n'a pas été fait automatiquement) d'initialiser manuellement le dépôt Git pour le répertoire <em>/etc</em>.</p>
+<p><div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>etckeeper<span class="w"> </span>init
+sudo<span class="w"> </span>etckeeper<span class="w"> </span>commit<span class="w"> </span><span class="s2">&quot;Commit inital pour /etc&quot;</span>
+</code></pre></div>
+Cela crée une première version (snapshot) de l’état actuel de tous les fichiers de configuration.</p>
+<h2 id="4-integration-de-etckeeper-avec-le-gestionnaire-de-paquets-debian-apt">4. Intégration de etckeeper avec le gestionnaire de paquets Debian APT<a class="headerlink" href="#4-integration-de-etckeeper-avec-le-gestionnaire-de-paquets-debian-apt" title="Permanent link">&para;</a></h2>
+<p>L’un des grands avantages d’etckeeper est son intégration automatique avec les gestionnaires de paquets. À chaque installation, mise à jour ou suppression de paquet, un commit Git est généré pour enregistrer les modifications dans_/etc_.</p>
+<h3 id="41-comment-cela-fonctionne">4.1 Comment çela fonctionne ?<a class="headerlink" href="#41-comment-cela-fonctionne" title="Permanent link">&para;</a></h3>
+<p>etckeeper utilise des scripts de hooks qui sont déclenchés automatiquement par le gestionnaire de paquets. À chaque opération sur les paquets, un commit automatique est réalisé si des changements sont détectés.</p>
+<h3 id="42-exemple-pratique">4.2 Exemple pratique<a class="headerlink" href="#42-exemple-pratique" title="Permanent link">&para;</a></h3>
+<p>Quand j’installe un nouveau paquet avec <em>apt</em> :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx
+</code></pre></div>
+<p><strong>etckeeper</strong> va, en coulisses :</p>
+<ul>
+<li>Effectuer un commit avant l’installation pour enregistrer l’état actuel.</li>
+<li>Installer le paquet.</li>
+<li>Effectuer un commit après l’installation pour capturer toute modification apportée à /etc.</li>
+</ul>
+<p>Je peux voir les changements avec une simple commande Git :</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc
+sudo<span class="w"> </span>git<span class="w"> </span>log
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>commit<span class="w"> </span>acd94001bbdb8ed8c0e3196e8c760566d8b546e9<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>master<span class="o">)</span>
+Author:<span class="w"> </span>Stéphane<span class="w"> </span>ROBERT<span class="w"> </span>&lt;toto@toto.com&gt;
+Date:<span class="w">   </span>Sat<span class="w"> </span>Apr<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">12</span>:33:37<span class="w"> </span><span class="m">2025</span><span class="w"> </span>+0000
+
+<span class="w">    </span>committing<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>/etc<span class="w"> </span>made<span class="w"> </span>by<span class="w"> </span><span class="s2">&quot;apt install nginx&quot;</span>
+
+<span class="w">    </span>Packages<span class="w"> </span>with<span class="w"> </span>configuration<span class="w"> </span>changes:
+<span class="w">    </span>+nginx-common<span class="w"> </span><span class="m">1</span>.24.0-2ubuntu7.3<span class="w"> </span>all
+
+<span class="w">    </span>Package<span class="w"> </span>changes:
+<span class="w">    </span>+nginx<span class="w"> </span><span class="m">1</span>.24.0-2ubuntu7.3<span class="w"> </span>amd64
+<span class="w">    </span>+nginx-common<span class="w"> </span><span class="m">1</span>.24.0-2ubuntu7.3<span class="w"> </span>all
+</code></pre></div>
+<h3 id="43-activation-ou-desactivation-des-commits-automatiques">4.3 Activation ou désactivation des commits automatiques<a class="headerlink" href="#43-activation-ou-desactivation-des-commits-automatiques" title="Permanent link">&para;</a></h3>
+<p>Dans le fichier <em>/etc/etckeeper/etckeeper.conf</em>, je peux ajuster cette option :</p>
+<div class="highlight"><pre><span></span><code>sudoedit<span class="w"> </span>/etc/etckeeper/etckeeper.conf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">COMMIT_AFTER_INSTALL</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+</code></pre></div>
+<p>Si je préfère gérer manuellement les commits, je peux changer ce paramètre en "no".</p>
+<p>Grâce à cette automatisation des commits de configuration, je garde un historique précis sans devoir y penser à chaque manipulation de mon système.</p>
+<h2 id="5-gestion-des-metadonnees-et-des-permissions">5. Gestion des métadonnées et des permissions<a class="headerlink" href="#5-gestion-des-metadonnees-et-des-permissions" title="Permanent link">&para;</a></h2>
+<p>Quand je met en place une gestion de version de <em>/etc</em> avec etckeeper, je dois aussi penser à préserver les métadonnées des fichiers, comme les permissions, les propriétaires et les groupes. Ces informations sont essentielles pour garantir le bon fonctionnement du système après une restauration.</p>
+<h3 id="51-metadonnees-prises-en-charge">5.1 Métadonnées prises en charge<a class="headerlink" href="#51-metadonnees-prises-en-charge" title="Permanent link">&para;</a></h3>
+<p>etckeeper s’occupe automatiquement de préserver les métadonnées essentielles, telles que :</p>
+<ul>
+<li>Les permissions (chmod)</li>
+<li>Les propriétaires (chown)</li>
+<li>Les groupes (chgrp)</li>
+<li>Les dates de modification (dans certaines configurations)</li>
+</ul>
+<p>Pour cela, il génère des fichiers spéciaux contenant les métadonnées à chaque commit. Ces fichiers sont stockés dans le dépôt Git sous forme de fichiers supplémentaires, comme :</p>
+<div class="highlight"><pre><span></span><code>.etckeeper
+.etckeeper-meta
+</code></pre></div>
+<h3 id="52-activation-de-la-gestion-avancee">5.2 Activation de la gestion avancée<a class="headerlink" href="#52-activation-de-la-gestion-avancee" title="Permanent link">&para;</a></h3>
+<p>Dans le fichier de configuration <em>/etc/etckeeper/etckeeper.conf</em>, je peux vérifier cette option :</p>
+<div class="highlight"><pre><span></span><code><span class="nv">PRESERVE_METADATA</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+</code></pre></div>
+<p>Elle est activée par défaut sur la plupart des distributions. Si elle est désactivée, je risque de perdre des réglages critiques après une restauration.</p>
+<h3 id="53-bonnes-pratiques-pour-les-metadonnees">5.3 Bonnes pratiques pour les métadonnées<a class="headerlink" href="#53-bonnes-pratiques-pour-les-metadonnees" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Toujours réaliser un commit après une modification importante dans /etc pour éviter d’oublier les changements de permissions.</li>
+<li>Vérifier les fichiers de métadonnées en cas de migration ou de restauration d’un système sur une nouvelle machine.</li>
+<li>Restaurer avec précaution : si je fais un git checkout sur un fichier sensible, je dois m’assurer que ses permissions sont correctement rétablies.</li>
+</ul>
+<p>Grâce à cette gestion des permissions et des propriétaires, l’usage d’etckeeper devient fiable même pour des environnements sensibles où la moindre erreur de droit d’accès pourrait compromettre la sécurité du système.</p>
+<h2 id="6-sauvegarde-et-restauration-des-configurations">6. Sauvegarde et restauration des configurations<a class="headerlink" href="#6-sauvegarde-et-restauration-des-configurations" title="Permanent link">&para;</a></h2>
+<p>L’un des principaux atouts d’etckeeper est de faciliter la sauvegarde et la restauration de la configuration système sans efforts complexes.</p>
+<h3 id="61-sauvegarder-le-repertoire-etc">6.1 Sauvegarder le répertoire /etc<a class="headerlink" href="#61-sauvegarder-le-repertoire-etc" title="Permanent link">&para;</a></h3>
+<p>Pour une sauvegarde complète, je m’assure de copier non seulement les fichiers de /etc, mais aussi l’historique Git associé. Je peux utiliser une commande simple comme :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>etc-backup.tar.gz<span class="w"> </span>/etc
+</code></pre></div>
+<p>Cela inclut tout le contenu de /etc, y compris le dossier caché .git qui contient l’historique des changements. Je peux ensuite stocker cette archive sur un serveur de sauvegarde externe ou dans une solution de stockage cloud.</p>
+<h3 id="62-restaurer-la-configuration-avec-etckeeper">6.2 Restaurer la configuration avec etckeeper<a class="headerlink" href="#62-restaurer-la-configuration-avec-etckeeper" title="Permanent link">&para;</a></h3>
+<p>En cas de problème, je peux restaurer l’archive sauvegardée :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>tar<span class="w"> </span>xzf<span class="w"> </span>etc-backup.tar.gz<span class="w"> </span>-C<span class="w"> </span>/
+</code></pre></div>
+<p>Puis je peux revenir à un état antérieur avec Git :</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc
+sudo<span class="w"> </span>git<span class="w"> </span>log<span class="w"> </span>--oneline
+sudo<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>&lt;id_commit&gt;
+</code></pre></div>
+<p>Cela me permet de restaurer rapidement un fichier spécifique ou l’ensemble du répertoire /etc à une date donnée.</p>
+<p><strong>Exemple : restaurer un fichier spécifique</strong></p>
+<p>Si, par exemple, j’ai cassé ma configuration nginx, je peux restaurer uniquement ce fichier.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc
+sudo<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>HEAD^<span class="w"> </span>--<span class="w"> </span>nginx/nginx.conf
+</code></pre></div>
+<p>Je récupère ainsi la dernière version fonctionnelle sans affecter le reste du système.</p>
+<p>Grâce à la sauvegarde des fichiers /etc avec etckeeper, je bénéficie d’une solution fiable pour sécuriser mes configurations critiques et réduire le temps de récupération en cas d’incident.</p>
+<h3 id="63-restaurer-des-fichiers-ou-la-totalite-de-etc-avec-etckeeper">6.3 Restaurer des fichiers ou la totalité de /etc avec etckeeper<a class="headerlink" href="#63-restaurer-des-fichiers-ou-la-totalite-de-etc-avec-etckeeper" title="Permanent link">&para;</a></h3>
+<p>Avec etckeeper, restaurer une ancienne version de /etc est simple grâce à Git.</p>
+<p><strong>Voir l’historique des changements</strong></p>
+<p>Listez les commits passés :</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc
+sudo<span class="w"> </span>git<span class="w"> </span>log<span class="w"> </span>--oneline
+</code></pre></div>
+<p>Exemple :
+<div class="highlight"><pre><span></span><code>e2d9c24<span class="w"> </span>Ajout<span class="w"> </span>de<span class="w"> </span>la<span class="w"> </span>config<span class="w"> </span>SSL<span class="w"> </span>nginx
+a7d0f91<span class="w"> </span>Commit<span class="w"> </span>après<span class="w"> </span>update<span class="w"> </span>des<span class="w"> </span>paquets
+1f3c6b2<span class="w"> </span>Commit<span class="w"> </span>initial
+</code></pre></div></p>
+<h3 id="64-restaurer-tout-etc-a-un-etat-precedent">6.4 Restaurer tout /etc à un état précédent<a class="headerlink" href="#64-restaurer-tout-etc-a-un-etat-precedent" title="Permanent link">&para;</a></h3>
+<p>Si vous voulez restaurer tout le répertoire /etc à une version antérieure :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>&lt;ID_du_commit&gt;
+</code></pre></div>
+<p>Par exemple :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>a7d0f91
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Cela remplace l’ensemble du contenu de /etc avec l’état du commit. Pensez à faire une sauvegarde avant en cas de doute !</p>
+</div>
+<h3 id="65-restaurer-un-fichier-specifique">6.5 Restaurer un fichier spécifique<a class="headerlink" href="#65-restaurer-un-fichier-specifique" title="Permanent link">&para;</a></h3>
+<p>Si seule une partie doit être restaurée (ex: nginx.conf cassé) :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>&lt;ID_du_commit&gt;<span class="w"> </span>--<span class="w"> </span>chemin/vers/le/fichier
+</code></pre></div>
+<p>Exemple :
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>HEAD^<span class="w"> </span>--<span class="w"> </span>nginx/nginx.conf
+</code></pre></div></p>
+<p>Cela récupère uniquement l’ancien fichier sans toucher au reste.</p>
+<h3 id="66-annuler-des-changements-non-commites">6.6 Annuler des changements non commités<a class="headerlink" href="#66-annuler-des-changements-non-commites" title="Permanent link">&para;</a></h3>
+<p>Si vous avez fait des modifications locales non désirées :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>--<span class="w"> </span>etc/<span class="o">[</span>&lt;dossier&gt;/<span class="o">]</span>&lt;fichier&gt;
+</code></pre></div>
+<p>Cela annule les modifications non encore commités.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Dernière mise à jour">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2025-10-25
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../../..", "features": ["content.code.copy", "navigation.instant", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.prune", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

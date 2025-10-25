@@ -1,0 +1,1401 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://joris-texier.github.io/documentation-cub/CUB/Documentation/AdminServ/Linux/2--OTP/">
+      
+      
+        <link rel="prev" href="../../Situation1-AdminServ-CUB/">
+      
+      
+        <link rel="next" href="../../Versioning/1--Introduction/">
+      
+      
+      <link rel="icon" href="../../../../../media/logo_site.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Authentification TOTP sur Debian - Le contexte CUB et AP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-rappel-sur-les-mots-de-passe-a-usage-unique-hotptotp" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../../../.." title="Le contexte CUB et AP" class="md-header__button md-logo" aria-label="Le contexte CUB et AP" data-md-component="logo">
+      
+  <img src="../../../../../media/logo_site.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Le contexte CUB et AP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Authentification TOTP sur Debian
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Basculer en mode sombre"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Basculer en mode sombre" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../Contexte/01-presentation/" class="md-tabs__link">
+          
+  
+  
+  CUB
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../AP/Contexte/Contexte%20AP/Contexte_Epoka/" class="md-tabs__link">
+          
+  
+  
+  AP
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Le contexte CUB et AP" class="md-nav__button md-logo" aria-label="Le contexte CUB et AP" data-md-component="logo">
+      
+  <img src="../../../../../media/logo_site.png" alt="logo">
+
+    </a>
+    Le contexte CUB et AP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accueil
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    CUB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            CUB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contexte
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Contexte
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/01-presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation du contexte CUB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/02-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schéma réseau de l'entreprise CUB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/03-infra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Description de l'infrastructure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/bonnespratiques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Référentiel défini par la DSI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../AdminInfra/Situation0-AdminInfra-CUB/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Administration des infrastructures
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Administration des services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Administration des services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Situation1-AdminServ-CUB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Situation1 - AdminServ - CUB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_2" id="__nav_2_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Authentification TOTP sur Debian
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Authentification TOTP sur Debian
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-rappel-sur-les-mots-de-passe-a-usage-unique-hotptotp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Rappel sur les mots de passe à usage unique (HOTP/TOTP)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-schema-de-principe-concernant-la-configuration-de-totp-sur-un-systeme-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Schéma de principe concernant la configuration de TOTP sur un système Debian
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-prerequis-sur-le-smartphone-et-le-poste-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Prérequis sur le smartphone et le poste client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configuration-du-serveur-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configuration du serveur Debian
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuration-du-poste-client-et-de-lapplication-android-freeotp" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Configuration du poste client et de l'application Android FreeOTP+
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../Versioning/1--Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Versioning
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../AdminSys/Situation1-AdminSys-CUB/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Administration des systèmes
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Cybers%C3%A9curit%C3%A9/Situation1-Cyber-CUB/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Cybersécurité
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../../../AP/Contexte/Contexte%20AP/Contexte_Epoka/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    AP
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-rappel-sur-les-mots-de-passe-a-usage-unique-hotptotp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Rappel sur les mots de passe à usage unique (HOTP/TOTP)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-schema-de-principe-concernant-la-configuration-de-totp-sur-un-systeme-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Schéma de principe concernant la configuration de TOTP sur un système Debian
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-prerequis-sur-le-smartphone-et-le-poste-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Prérequis sur le smartphone et le poste client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configuration-du-serveur-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configuration du serveur Debian
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuration-du-poste-client-et-de-lapplication-android-freeotp" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Configuration du poste client et de l'application Android FreeOTP+
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Authentification TOTP sur Debian</h1>
+
+<p>D# Authentification TOTP sur Debian</p>
+<h2 id="1-rappel-sur-les-mots-de-passe-a-usage-unique-hotptotp">1. Rappel sur les mots de passe à usage unique (HOTP/TOTP)<a class="headerlink" href="#1-rappel-sur-les-mots-de-passe-a-usage-unique-hotptotp" title="Permanent link">&para;</a></h2>
+<p><strong>HOTP</strong></p>
+<p>HOTP (pour HMAC One Time Password) est un mécanisme d’authentification reposant sur l’utilisation d’une clé secrète et d’un compteur commun entre le client et le serveur. HOTP ne nécessite donc pas l’utilisation d’une horloge.
+Il se base sur HMAC. HMAC est un type de code d’authentification de message qui combine l’utilisation d’une fonction de hachage (SHA-256) avec une clé secrète dans le but de vérifier simultanément l’intégrité des données et l’authenticité du message.
+Toutefois, HOTP est susceptible de perdre la synchronisation du compteur entre le client (par exemple la clé de sécurité) et le serveur. Il peut ainsi s’avérer difficile de maintenir un compteur commun.</p>
+<p><img alt="hOTP" src="../../../../media/hotp.png" /></p>
+<p><strong>TOTP</strong></p>
+<p>Un mot de passe à usage unique basé sur le temps (TOTP, Time based One Time Password en anglais) est un algorithme permettant de générer un mot de passe à usage unique.
+Ainsi, TOTP permet la génération d’une séquence de caractères valable seulement pendant un intervalle de temps limité afin de constituer un mécanisme de double authentification. C’est une extension du mot de passe à usage unique basé sur HMAC. Contrairement à HOTP qui nécessite un compteur incrémental partagé entre les deux entités pour garantir l'utilisation unique, TOTP utilise l'heure (sous réserve que les horloges soient synchronisées) et un secret partagé. Un intervalle de temps de validité est défini pour tolérer une désynchronisation des horloges.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p><strong>Phase d'enregistrement</strong></p>
+<p><img alt="TOTP1" src="../../../../media/totp1.png" /></p>
+<p><strong>Phase d'authentification</strong></p>
+<p><img alt="TOTP2" src="../../../../media/totp2.png" /></p>
+<p>Dans le schéma ci-dessus, nous constatons que la clé secrète est commune et qu’elle a été transmise au client lors de la phase d’enregistrement. L’avantage de passer par une clé de sécurité est de pouvoir stocker cette clé secrète sur un matériel spécifique et non directement sur le smartphone ou sur l’ordinateur client.</p>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Contrairement à la norme FIDO 2, TOTP ne protège pas d’un certain nombre d’attaques (phishing, fuite du secret commun sur le serveur). Cette méthode d’authentification est donc moins robuste que FIDO 2 et ne respecte pas l’état de l’art. Cependant, elle reste une alternative intéressante à l'usage d'un simple mot de passe pour l'accès à des comptes sensibles.</p>
+</div>
+<h2 id="2-schema-de-principe-concernant-la-configuration-de-totp-sur-un-systeme-debian">2. Schéma de principe concernant la configuration de TOTP sur un système Debian<a class="headerlink" href="#2-schema-de-principe-concernant-la-configuration-de-totp-sur-un-systeme-debian" title="Permanent link">&para;</a></h2>
+<p><img alt="TOTPLINUX" src="../../../../media/TOTPlinux.png" /></p>
+<h2 id="3-prerequis-sur-le-smartphone-et-le-poste-client">3. Prérequis sur le smartphone et le poste client<a class="headerlink" href="#3-prerequis-sur-le-smartphone-et-le-poste-client" title="Permanent link">&para;</a></h2>
+<p>Sur votre smartphone, installez l’application FreeOTP+ sur Android ou FreeOTP Authenticator sur IOS (ou toute application OTP compatible). Sur votre poste client Kali ou Ubuntu, installez le paquet qrencode qui permet de générer un QR code afin de paramétrer l’application FreeOTP+ (ou toute application similaire dans un environnement Windows) en lien avec le service oath présent sur le serveur Debian 12.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qrencode
+</code></pre></div>
+<p>On s’assurera également que la connexion SSH entre le poste client et le serveur Debian est pleinement opérationnelle. Si ce n’est pas le cas, il sera impératif d’installer le service OpenSSH sur le serveur Debian 12 (sudo apt install openssh-server).</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>etudiant@192.168.1.90
+etudiant@192.168.1.90<span class="err">&#39;</span>s<span class="w"> </span>password:<span class="w"> </span>
+Linux<span class="w"> </span>serveur<span class="w"> </span><span class="m">6</span>.1.0-17-amd64<span class="w"> </span><span class="c1">#1 SMP PREEMPT_DYNAMIC Debian 6.1.69-1 (2023-12-30) x86_64</span>
+
+The<span class="w"> </span>programs<span class="w"> </span>included<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>Debian<span class="w"> </span>GNU/Linux<span class="w"> </span>system<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>software<span class="p">;</span>
+the<span class="w"> </span>exact<span class="w"> </span>distribution<span class="w"> </span>terms<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>program<span class="w"> </span>are<span class="w"> </span>described<span class="w"> </span><span class="k">in</span><span class="w"> </span>the
+individual<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>/usr/share/doc/*/copyright.
+
+Debian<span class="w"> </span>GNU/Linux<span class="w"> </span>comes<span class="w"> </span>with<span class="w"> </span>ABSOLUTELY<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent
+permitted<span class="w"> </span>by<span class="w"> </span>applicable<span class="w"> </span>law.
+Last<span class="w"> </span>login:<span class="w"> </span>Wed<span class="w"> </span>Jan<span class="w">  </span><span class="m">3</span><span class="w"> </span><span class="m">19</span>:34:10<span class="w"> </span><span class="m">2024</span><span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.85
+etudiant@serveur:~$
+</code></pre></div>
+<h2 id="4-configuration-du-serveur-debian">4. Configuration du serveur Debian<a class="headerlink" href="#4-configuration-du-serveur-debian" title="Permanent link">&para;</a></h2>
+<p>Dans un premier temps, il sera nécessaire d’installer les paquets permettant de mettre en œuvre le mécanisme d’OTP nommé OATH<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> sur le serveur.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libpam-oath<span class="w"> </span>oathtool
+</code></pre></div>
+<p>Puis, nous allons définir un secret sous forme hexadécimal qui sera utilisé par le générateur TOTP/HOTP en lien avec l’utilisateur étudiant et qui sera soumis à la double authentification.</p>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Ce secret doit être jalousement gardé car c’est la clé de voûte servant à la génération des mots de passe à usage unique. S’il est compromis, c’est l’ensemble de l’authentification OTP qui sera impacté.</p>
+</div>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>-i
+<span class="nv">KEY</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">20</span><span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;HOTP/T30/6 etudiant - </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/security/users.oath
+chown<span class="w"> </span>root<span class="w"> </span>/etc/security/users.oath<span class="w"> </span>
+chown<span class="w"> </span><span class="m">600</span><span class="w"> </span>/etc/security/users.oath
+</code></pre></div>
+<p>Nous allons maintenant configurer PAM (Pluggable Authentication Modules), le service qui contrôle les authentifications sur le serveur Debian.</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/etc/pam.d/sshd
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># PAM configuration for the Secure Shell service</span>
+
+<span class="c1"># Standard Un*x authentication.</span>
+<span class="c1">#@include common-auth</span>
+
+auth<span class="w"> </span>required<span class="w"> </span>pam_unix.so<span class="w"> </span>nullok_secure
+auth<span class="w"> </span>required<span class="w"> </span>pam_oath.so<span class="w"> </span><span class="nv">usersfile</span><span class="o">=</span>/etc/security/users.oath<span class="w"> </span><span class="nv">window</span><span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="nv">digits</span><span class="o">=</span><span class="m">6</span>
+</code></pre></div>
+<p>Nous commentons la ligne @include common-auth car elle empêche l’authentification OTP même en cas de connexion avec le bon mot de passe.</p>
+<p>La ligne suivante impose l’authentification par mot de passe stocké en local sur le système et interdit les mots de passe vides.</p>
+<p>La dernière impose une fois l’authentification par mot de passe réussie, une deuxième authentification par OTP. Nous faisons référence au fichier contenant le (ou les) nom d’utilisateur concerné ainsi que le secret servant à générer des mots de passe à usage unique. Ce mot de passe disposera de 6 chiffres et aura une durée de validité de 30 secondes.</p>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Cette configuration implique que tous les utilisateurs se connectant en SSH seront soumis à cette double authentification. Avec PAM, qui est le système d'authentification sur GNU/Linux, il est possible d'affiner ce que l'on souhaite faire et éviter que certains utilisateurs soient affectés par l'authentification TOTP.</p>
+</div>
+<p>Si vous avez un utilisateur, par exemple, <strong>adminbastion</strong> et que vous souhaitez uniquement une simple authentification par mot de passe pour lui et un mot de passe + code à usage unique pour les autres, il faudra ajouter une ligne supplémentaire à la configuration initiale proposée dans <em>/etc/pam.d/sshd</em>.</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># PAM configuration for the Secure Shell service</span>
+
+<span class="c1"># Standard Un*x authentication.</span>
+<span class="c1">#@include common-auth</span>
+
+auth<span class="w"> </span>required<span class="w"> </span>pam_unix.so<span class="w"> </span>nullok_secure
+auth<span class="w"> </span><span class="o">[</span><span class="nv">success</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">default</span><span class="o">=</span>ignore<span class="o">]</span><span class="w"> </span>pam_succeed_if.so<span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>adminbastion
+auth<span class="w"> </span>required<span class="w"> </span>pam_oath.so<span class="w"> </span><span class="nv">usersfile</span><span class="o">=</span>/etc/security/users.oath<span class="w"> </span><span class="nv">window</span><span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="nv">digits</span><span class="o">=</span><span class="m">6</span>
+</code></pre></div>
+<strong>La 2ème ligne permet de dire que si l'utilisateur adminbastion a correctement saisi son mot de passe alors PAM ignore l'authentification TOTP avec OATH.</strong></p>
+<p>Il nous reste maintenant à éditer le fichier de configuration du service SSH afin de définir l’usage de l’authentification 2FA.</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/etc/ssh/sshd_config
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ChallengeResponseAuthentication<span class="w"> </span>yes
+<span class="c1">#KbdInteractiveAuthentication no</span>
+UsePAM<span class="w"> </span>yes
+</code></pre></div>
+<p>Nous nous assurons de commenter la ligne <em>KdbInteractiveAuthentication</em> et d’avoir les deux autres lignes activées avec la valeur yes. Nous pouvons ensuite redémarrer le service SSH.</p>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>restart<span class="w"> </span>ssh
+</code></pre></div>
+<p>Enfin, il nous reste à récupérer le secret en base 32 qui nous permettra ensuite de générer sur le poste client un QR code pour notre application Android.</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/security/users.oath
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>HOTP/T30/6<span class="w"> </span>etudiant<span class="w"> </span>–<span class="w"> </span>65f43c705ce51c9c058ec8bb4b7f64b656681866
+root@serveur:~#<span class="w"> </span>oathtool<span class="w"> </span>-v<span class="w"> </span>-d<span class="w"> </span><span class="m">6</span><span class="w"> </span>65f43c705ce51c9c058ec8bb4b7f64b656681866
+Hex<span class="w"> </span>secret:<span class="w"> </span>65f43c705ce51c9c058ec8bb4b7f64b656681866
+Base32<span class="w"> </span>secret:<span class="w"> </span>MX2DY4C44UOJYBMOZC5UW73EWZLGQGDG
+Digits:<span class="w"> </span><span class="m">6</span>
+Window<span class="w"> </span>size:<span class="w"> </span><span class="m">0</span>
+Start<span class="w"> </span>counter:<span class="w"> </span>0x0<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Pour que la partie TOTP soit pleinement fonctionnelle, vous devez vous assurer que les horloges des différentes machines sont synchronisées et à l’heure.</p>
+</div>
+<h2 id="5-configuration-du-poste-client-et-de-lapplication-android-freeotp">5. Configuration du poste client et de l'application Android FreeOTP+<a class="headerlink" href="#5-configuration-du-poste-client-et-de-lapplication-android-freeotp" title="Permanent link">&para;</a></h2>
+<p>Il s’agit maintenant de paramétrer correctement la machine cliente et l’application Android FreeOTP+ afin de rendre opérationnel l’authentification SSH 2FA.</p>
+<p>Nous allons d’abord générer sur le poste client (Ubuntu ou Kali) un fichier png contenant un QR code que nous soumettrons à l’application FreeOTP+.</p>
+<div class="highlight"><pre><span></span><code>qrencode<span class="w"> </span>-o<span class="w"> </span>etudiant.png<span class="w"> </span><span class="s1">&#39;otpauth://totp/etudiant@192.168.1.90?secret=MX2DY4C44UOJYBMOZC5UW73EWZLGQGDG&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l
+…
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>etudiant<span class="w"> </span>etudiant<span class="w">        </span><span class="m">471</span><span class="w">  </span><span class="m">3</span><span class="w"> </span>janv.<span class="w"> </span><span class="m">23</span>:08<span class="w">  </span>etudiant.png
+</code></pre></div>
+<p>Nous pouvons ouvrir ce fichier PNG sur le poste client puis ouvrir l’application FreeOTP+ sur le smartphone.</p>
+<p>Sélectionner l’icône « Appareil photo » en bas à droite. Puis prenez en photo le QR code présent sur l’écran du client. Une nouvelle configuration pour votre utilisateur et votre serveur est automatiquement créée.</p>
+<p>Nous pouvons ensuite supprimer le fichier PNG contenant le QR code, car il contient le secret à ne pas compromettre.</p>
+<p>Sur le client, nous pouvons lancer une connexion SSH vers le serveur avec le compte etudiant. Après avoir entré votre mot de passe, un OTP vous est demandé. Dans l’application FreeOTP+, sélectionnez la nouvelle configuration. Celle-ci vous fournit un code de 6 chiffres valable 30 secondes.</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>etudiant@192.168.1.90<span class="w">               </span>
+<span class="o">(</span>etudiant@192.168.1.90<span class="o">)</span><span class="w"> </span>Password:<span class="w"> </span>
+<span class="o">(</span>etudiant@192.168.1.90<span class="o">)</span><span class="w"> </span>One-time<span class="w"> </span>password<span class="w"> </span><span class="o">(</span>OATH<span class="o">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="sb">`</span>etudiant<span class="err">&#39;</span>:<span class="w"> </span>
+Linux<span class="w"> </span>serveur<span class="w"> </span><span class="m">6</span>.1.0-17-amd64<span class="w"> </span><span class="c1">#1 SMP PREEMPT_DYNAMIC Debian 6.1.69-1 (2023-12-30) x86_64</span>
+
+The<span class="w"> </span>programs<span class="w"> </span>included<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>Debian<span class="w"> </span>GNU/Linux<span class="w"> </span>system<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>software<span class="p">;</span>
+the<span class="w"> </span>exact<span class="w"> </span>distribution<span class="w"> </span>terms<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>program<span class="w"> </span>are<span class="w"> </span>described<span class="w"> </span><span class="k">in</span><span class="w"> </span>the
+individual<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>/usr/share/doc/*/copyright.
+
+Debian<span class="w"> </span>GNU/Linux<span class="w"> </span>comes<span class="w"> </span>with<span class="w"> </span>ABSOLUTELY<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent
+permitted<span class="w"> </span>by<span class="w"> </span>applicable<span class="w"> </span>law.
+Last<span class="w"> </span>login:<span class="w"> </span>Wed<span class="w"> </span>Jan<span class="w">  </span><span class="m">3</span><span class="w"> </span><span class="m">22</span>:17:13<span class="w"> </span><span class="m">2024</span><span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.85
+etudiant@serveur:~$
+</code></pre></div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Source - Wikipédia&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Initiative pour l’authentification ouverte est une collaboration industrielle visant à développer une architecture de référence ouverte utilisant des normes ouvertes pour promouvoir l’adoption d’une authentification plus robuste que le simple mot de passe&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Dernière mise à jour">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2025-10-25
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../../..", "features": ["content.code.copy", "navigation.instant", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.prune", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
