@@ -1,6 +1,5 @@
 site_name: Le contexte CUB et AP
 site_url: https://joris-texier.github.io/documentation-cub/
-
 theme:
   name: material
   logo: media/logo_site.png
@@ -11,17 +10,17 @@ theme:
     - navigation.instant
     - navigation.tabs
     - navigation.sections
-    - navigation.expand       # Garde la structure pliable
-    - navigation.prune        # N'affiche que les sections ouvertes
+    - navigation.expand
+    - navigation.prune
     - search.suggest
     - search.highlight
     - toc.follow
   palette:
     - scheme: default
       primary: indigo
-      accent: blue
+      accent: cyan
     - scheme: slate
-      primary: blue
+      primary: indigo
       accent: cyan
       toggle:
         icon: material/weather-night
@@ -94,4 +93,3 @@ plugins:
   - search
   - git-revision-date
   - awesome-pages
-
