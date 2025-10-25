@@ -19,7 +19,7 @@ theme:
   palette:
     - scheme: default
       primary: teal
-      accent: light blue
+      accent: cyan
     - scheme: slate
       primary: cyan
       accent: teal
