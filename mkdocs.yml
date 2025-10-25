@@ -17,11 +17,11 @@ theme:
     - toc.follow
   palette:
     - scheme: default
-      primary: indigo
-      accent: cyan
+      primary: blue gray
+      accent: light blue
     - scheme: slate
-      primary: indigo
-      accent: cyan
+      primary: blue gray
+      accent: light blue
       toggle:
         icon: material/weather-night
         name: Basculer en mode sombre
@@ -31,65 +31,5 @@ theme:
   footer:
     content: "© 2025 — Documentation réalisée par <b>Joris Texier</b> | <b>JT Design Informatique</b>"
 
-nav:
-  - Accueil: index.md
-
-  - CUB:
-      - Contexte:
-          - Présentation du contexte CUB: CUB/Contexte/01-presentation.md
-          - Schéma réseau de l'entreprise CUB: CUB/Contexte/02-schemas.md
-          - Description de l'infrastructure: CUB/Contexte/03-infra.md
-          - Référentiel défini par la DSI: CUB/Contexte/bonnespratiques.md
-
-      - Documentation:
-          - Administration des infrastructures:
-              - Situation0 - AdminInfra - CUB: CUB/Documentation/AdminInfra/Situation0-AdminInfra-CUB.md
-          - Administration des services:
-              - Situation1 - AdminServ - CUB: CUB/Documentation/AdminServ/Situation1-AdminServ-CUB.md
-          - Administration des systèmes:
-              - Situation1 - AdminSys - CUB: CUB/Documentation/AdminSys/Situation1-AdminSys-CUB.md
-              - Situation2 - AdminSys - CUB: CUB/Documentation/AdminSys/Situation2-AdminSys-CUB.md
-              - Situation3 - AdminSys - CUB: CUB/Documentation/AdminSys/Situation3-AdminSys-CUB.md
-          - Cybersécurité:
-              - Situation1 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation1-Cyber-CUB.md
-              - Situation2 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation2-Cyber-CUB.md
-              - Situation3 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation3-Cyber-CUB.md
-              - Situation4 - Cybersécurité - CUB: CUB/Documentation/Cybersécurité/Situation4-Cyber-CUB.md
-
-  - AP:
-      - Contexte:
-          - Contexte général EPOKA: AP/Contexte/Contexte AP/Contexte_Epoka.md
-          - Contexte SP0: AP/Contexte/Contexte SP0/Contexte_SP0.md
-          - Contexte SP2: AP/Contexte/Contexte SP2/Contexte_SP2.md
-
-      - Documentation:
-          - SP0:
-              - Mission 1 - Adapter le plan d’adressage: AP/Documentation/SP0/Mission 1/SP0_Mission1_Adapter_Plan_Adressage.md
-              - Mission 2 - Mise en place d’un serveur AD/DHCP: AP/Documentation/SP0/Mission 2/SP0_Mission2_AD_DHCP.md
-              - Mission 3 - Mise en place d’un serveur NAS: AP/Documentation/SP0/Mission 3/SP0_Mission3_NAS.md
-              - Mission 3 - Mise en place d’un serveur GLPI: AP/Documentation/SP0/Mission 3/SP0_Mission3_GLPI.md
-              - Mission 4 - Mise en place d’une partie de l’architecture réseau: AP/Documentation/SP0/Mission 4/SP0_Mission4_Architecture_Reseau.md
-          - SP2:
-              - Mission 1: AP/Documentation/SP2/Mission 1/[]
-              - Mission 2: AP/Documentation/SP2/Mission 2/[]
-
-markdown_extensions:
-  - toc:
-      permalink: true
-      toc_depth: "2-3"
-  - tables
-  - admonition
-  - codehilite
-  - footnotes
-  - attr_list
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.highlight
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-
-plugins:
-  - search
-  - git-revision-date
-  - awesome-pages
+extra_css:
+  - assets/stylesheets/custom.css
