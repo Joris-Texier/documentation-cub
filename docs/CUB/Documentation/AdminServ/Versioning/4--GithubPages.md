@@ -24,13 +24,11 @@ Une fois votre compte GitHub créé, vous pouvez créer un nouveau répertoire p
 
 ![pages](../../../media/frankfurt.png)
 
-
 Une fois le répertoire créé, vous pouvez y ajouter vos collaborateurs, en l'occurrence, ceux qui participeront à la documentation avec vous. Pour cela, il faut se rendre dans **Settings** puis dans **Collaborators**.
 
 ![pages](../../../media/collaborators.png)
 
-
-## 4. Récupération du dépôt créé sur GitHub comme dépôt local
+## 4. Récupération du dépôt créé sur GitHub comme dépôt local
 
 ### 4.1 Gestion du dépôt local
 
@@ -38,7 +36,7 @@ Maintenant que votre dépôt est présent sur GitHub, vous allez pouvoir le tél
 
 ```bash
 cd /home/etudiant/documentations/
-git clone https://github.com/Joris-Texier/franfurt.git
+git clone https://github.com/Joris-Texier/frankfurt.git
 ```
 !!! Warning  "Attention"
     Dans l'exemple ci-dessus, le dossier _/home/etudiant/documentations/_ existe déjà. Les commandes systèmes se font également sur un système GNU/Linux. Dans le cas où vous êtes dans un environnement Windows, il sera nécessaire vous adapter. Les commandes **git** restent identiques peu importe l'OS.
@@ -78,7 +76,7 @@ Dans le répertoire _/home/etudiant/documentations/frankfurt/docs_, c'est davant
 En termes de commandes cela donne donc la chose suivante :
 
 ```bash
- cd /home/etudiant/documentations/hongkong
+ cd /home/etudiant/documentations/frankfurt
  mkdir -p docs/documentation docs/media
  vim docs/index.md
 ```
@@ -108,9 +106,10 @@ Vous pouvez vérifier que votre dépôt distant est correctement déclaré dans 
 ```
 
 ```
-origin	https://github.com/qdemouliere/hongkong.git (fetch)
-origin	https://github.com/qdemouliere/hongkong.git (push)
+origin	https://github.com/Joris-Texier/frankfurt.git (fetch)
+origin	https://github.com/Joris-Texier/frankfurt.git (push)
 ```
+
 ### 4.2 Gestion et synchronisation avec le dépôt distant sur GitHub
 
 À partir de là, il est possible de synchroniser votre dépôt local avec votre dépôt distant afin que les modifications appliquées sur votre ordinateur le soient maintenant sur Github. Pour cela, il faut indiquer à Git quel est votre dépot distant et si vous souhaitez utiliser HTTPS ou SSH.
@@ -136,15 +135,15 @@ git push -u origin main
     Lorsque le mot de passe vous est demandé, saisissez le token fourni par GitHub et non le mot de passe associé à votre compte.
 
 ```
-Username for 'https://github.com': qdemouliere
-Password for 'https://qdemouliere@github.com': 
+Username for 'https://github.com': Joris-Texier
+Password for 'https://Joris-Texier@github.com': 
 Énumération des objets: 5, fait.
 Décompte des objets: 100% (5/5), fait.
 Compression par delta en utilisant jusqu'à 8 fils d'exécution
 Compression des objets: 100% (3/3), fait.
 Écriture des objets: 100% (4/4), 470 octets | 235.00 Kio/s, fait.
 Total 4 (delta 0), réutilisés 0 (delta 0), réutilisés du paquet 0 (depuis 0)
-To https://github.com/qdemouliere/hongkong.git
+To https://github.com/Joris-Texier/frankfurt.git
    912197f..ff915e2  main -> main
 la branche 'main' est paramétrée pour suivre 'origin/main'.
 ```
@@ -153,12 +152,12 @@ la branche 'main' est paramétrée pour suivre 'origin/main'.
 
 Votre dépôt GitHub est dorénavant identique à votre dépôt local. Toutefois la génération automatique des pages HTML à partir du contenu de vos fichiers Markdown avec Mkdocs doit être activée sur GitHub.
 
-### 5.1 Création d'une action GitHub
+### 5.1 Création d'une action GitHub
 
 À la racine de votre dépôt, créez une nouvelle action GitHub nommée _.github/workflows/ci.yml_ disposant des lignes suivantes :
 
 ```bash
- cd /home/etudiant/documentations/hongkong
+ cd /home/etudiant/documentations/frankfurt
  mkdir -p .github/workflows/
  vim .github/workflows/ci.yml
 ```
@@ -197,7 +196,7 @@ jobs:
 Prévenez Git des modifications effectuées et réalisez un commit avant de refaire un push vers votre dépôt GitHub.
 
 ```bash
- cd /home/etudiant/documentations/hongkong
+ cd /home/etudiant/documentations/frankfurt
  git add --all
  git commit -m "Ajout de la CI pour mkdocs 210925"
 ```
@@ -206,7 +205,7 @@ Prévenez Git des modifications effectuées et réalisez un commit avant de refa
  git push -u origin main
 ```
 
-### 5.2 Vérification de la configuration des GitHub Pages sur GitHub
+### 5.2 Vérification de la configuration des GitHub Pages sur GitHub
 
 Depuis la page de votre répertoire, cliquez sur _Settings_ puis _Pages_ dans le menu à gauche. Vérifiez que sous _Branch_, _gh_pages_ soit sélectionné. Sauvegardez les modifications si ce n'est pas le cas.
 
@@ -214,13 +213,13 @@ Depuis la page de votre répertoire, cliquez sur _Settings_ puis _Pages_ dans le
 
 ## 6. Accès à vos GitHub Pages
 
-Grâce à Mkdocs, vous pouvez ainsi accéder à votre site statique généré automatiquement via l'URL : https://user.github.io/projet (ex: https://qdemouliere.github.io/hongkong).
+Grâce à Mkdocs, vous pouvez ainsi accéder à votre site statique généré automatiquement via l'URL : https://user.github.io/projet (ex: https://Joris-Texier.github.io/frankfurt).
 
 ![pages](../../../media/mkdocsfinal.png)
 
 Si vous possédez un nom de domaine et souhaitez disposer d'une URL customisée, GitHub vous propose cette possibilité.
 
-## 7. Travail collaboratif et documentation
+## 7. Travail collaboratif et documentation
 
 Plusieurs stratégies pour travailler en commun sur cette documentation sont envisageables. Les bonnes pratiques recommandent en général que chaque membre travaille sur une branche distincte de la branche principale puis que ces dernières soient fusionnées le moment venu (merge).
 
@@ -230,7 +229,7 @@ Par simplicité, il est possible de travailler ensemble sur la branche principal
     **Dès que vous voulez apporter des modifications à votre dépôt local, veillez systématiquement à obtenir la dernière version de votre dépôt distant surtout si l'un de vos collaborateurs l'a mis à jour entre temps. Si vous ne le faîtes pas, vous vous exposez à des problèmes liés à des différences de versions utilisées entre votre dépôt local et le dépôt distant.**
 
 ```bash
- cd /home/etudiant/documentations/hongkong
+ cd /home/etudiant/documentations/frankfurt
  git pull
 ```
 
