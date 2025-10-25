@@ -18,15 +18,17 @@ Le net regorge de ressources pour apprendre le fonctionnement de la syntaxe Mark
 
 Une fois votre compte GitHub créé, vous pouvez créer un nouveau répertoire pour votre projet (New).
 
-![](../../media/mkdocs/github1.png)
+![pages](../../../media/profil_github.png)
 
-![](../../media/mkdocs/github2.png)
+![pages](../../../media/new repository.png)
 
-![](../../media/mkdocs/github3.png)
+![pages](../../../media/frankfurt.png)
+
 
 Une fois le répertoire créé, vous pouvez y ajouter vos collaborateurs, en l'occurrence, ceux qui participeront à la documentation avec vous. Pour cela, il faut se rendre dans **Settings** puis dans **Collaborators**.
 
-![](../../media/mkdocs/github5.png)
+![pages](../../../media/collaborators.png)
+
 
 ## 4. Récupération du dépôt créé sur GitHub comme dépôt local
 
@@ -36,7 +38,7 @@ Maintenant que votre dépôt est présent sur GitHub, vous allez pouvoir le tél
 
 ```bash
 cd /home/etudiant/documentations/
-git clone https://github.com/qdemouliere/hongkong.git
+git clone https://github.com/Joris-Texier/franfurt.git
 ```
 !!! Warning  "Attention"
     Dans l'exemple ci-dessus, le dossier _/home/etudiant/documentations/_ existe déjà. Les commandes systèmes se font également sur un système GNU/Linux. Dans le cas où vous êtes dans un environnement Windows, il sera nécessaire vous adapter. Les commandes **git** restent identiques peu importe l'OS.
@@ -47,28 +49,28 @@ ls -l
 
 ```
 ...
-drwxr-xr-x 3 etudiant etudiant  4096 21 sept. 18:18 hongkong
+drwxr-xr-x 3 etudiant etudiant  4096 25 oct. 18:18 frankfurt
 ```
 
-Une fois le répertoire distant cloné, vous pouvez commencer à travailler. Pour pouvoir héberger votre documentation en Markdowk sur les Github Pages avec Mkdocs, vous devrez créer l'arborescence suivante à partir de la racine (ici le répertoire: _/home/etudiant/documentations/hongkong_).
+Une fois le répertoire distant cloné, vous pouvez commencer à travailler. Pour pouvoir héberger votre documentation en Markdowk sur les Github Pages avec Mkdocs, vous devrez créer l'arborescence suivante à partir de la racine (ici le répertoire: _/home/etudiant/documentations/frankfurt_).
 
 ```
-/home/etudiant/documentations/hongkong
+/home/etudiant/documentations/frankfurt
                                 |_______docs
                                 |_______mkdocs.yaml
                                 |_______README.md
 ```
 
-Le répertoire **docs** contiendra l'ensemble de votre documentation de votre agence. Le fichier **mkdocs.yaml** est le fichier de configuration de l'outil mkdocs, il permet de définir les paramètres de votre site et les plugins utilisés. Nous vous suggérons de vous inspirer de celui présent dans [la documentation générale CUB](https://github.com/qdemouliere/cub). Enfin le README.md permet de fournir des informations aux utilisateurs consultant le dépôt en question.
+Le répertoire **docs** contiendra l'ensemble de votre documentation de votre agence. Le fichier **mkdocs.yaml** est le fichier de configuration de l'outil mkdocs, il permet de définir les paramètres de votre site et les plugins utilisés. Nous vous suggérons de vous inspirer de celui présent dans [la documentation générale CUB](https://github.com/Joris-Texier/cub). Enfin le README.md permet de fournir des informations aux utilisateurs consultant le dépôt en question.
 
 ```
-/home/etudiant/documentations/hongkong/docs
+/home/etudiant/documentations/frankfurt/docs
                                         |_____documentation
                                         |_____media
                                         |_____index.md
 ```
 
-Dans le répertoire _/home/etudiant/documentations/hongkong/docs_, c'est davantage à vous de gérer la structure comme bon vous semble. Le fichier **index.md** correspond à la page principale de votre documentation. Les répertoires que vous créerez et hébergeant des fichiers **.md** serviront de menus dans la barre latérale. Enfin, nous vous suggérons la création d'un répertoire **média** contenant l'ensemble des images (JPEG, PNG) mobilisées dans vos différentes documentations. Mais libre à vous de choisir la structure la plus adaptée à votre situation.
+Dans le répertoire _/home/etudiant/documentations/frankfurt/docs_, c'est davantage à vous de gérer la structure comme bon vous semble. Le fichier **index.md** correspond à la page principale de votre documentation. Les répertoires que vous créerez et hébergeant des fichiers **.md** serviront de menus dans la barre latérale. Enfin, nous vous suggérons la création d'un répertoire **média** contenant l'ensemble des images (JPEG, PNG) mobilisées dans vos différentes documentations. Mais libre à vous de choisir la structure la plus adaptée à votre situation.
 
 ??? info "À propos des répertoires"
     Tant que les répertoires créés sont vides, ils ne seront pas présents dans votre dépôt distant.
@@ -118,11 +120,11 @@ origin	https://github.com/qdemouliere/hongkong.git (push)
 
 Pour vous créer un jeton personnel d'accès, cliquez sue votre photo de profil puis sur _Settings_. Puis cliquez dans le menu à gauche tout en bas sur _Developer Settings_. Cliquez toujours dans le menu à gauche sur  _Personal access tokens_ puis sur _Tokens (classic)_ > _Generate a new token_ > _Generate a new token (classic)_.
 
-![](../../media/mkdocs/authgithub1.png)
+![pages](../../../media/profil public.png)
 
-![](../../media/mkdocs/authgithub2.png)
+![pages](../../../media/authgithub2.png)
 
-![](../../media/mkdocs/authgithub3.png)
+![pages](../../../media/authgithub3.png)
 
 Le site vous demande ensuite de vous authentifier à l'aide de votre mot de passe. Puis il est nécessaire de définir les paramètres du token dont la date d'expiration. Prévoyez une date suffisamment longue au regard de votre formation (ex: 01/08/2026). Vous pouvez vous octroyer l'ensemble des authorisations. Il faut conserver précieusement ce token **dans un gestionnaire de mots de passe par exemple** puisque c'est lui qui vous sera demandé lorsque vous lancerez des commandes telles que _git push_.
 
@@ -208,13 +210,13 @@ Prévenez Git des modifications effectuées et réalisez un commit avant de refa
 
 Depuis la page de votre répertoire, cliquez sur _Settings_ puis _Pages_ dans le menu à gauche. Vérifiez que sous _Branch_, _gh_pages_ soit sélectionné. Sauvegardez les modifications si ce n'est pas le cas.
 
-![](../../media/mkdocs/mkdocs1.png)
+![pages](../../../media/github_pages.png)
 
 ## 6. Accès à vos GitHub Pages
 
 Grâce à Mkdocs, vous pouvez ainsi accéder à votre site statique généré automatiquement via l'URL : https://user.github.io/projet (ex: https://qdemouliere.github.io/hongkong).
 
-![](../../media/mkdocs/mkdocsfinal.png)
+![pages](../../../media/mkdocsfinal.png)
 
 Si vous possédez un nom de domaine et souhaitez disposer d'une URL customisée, GitHub vous propose cette possibilité.
 
