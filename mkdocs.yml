@@ -19,10 +19,10 @@ theme:
   palette:
     - scheme: default
       primary: indigo
-      accent: blue
+      accent: light blue
     - scheme: slate
-      primary: blue
-      accent: cyan
+      primary: deep purple
+      accent: light blue
       toggle:
         icon: material/weather-night
         name: Basculer en mode sombre
