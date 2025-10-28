@@ -1,259 +1,181 @@
-# Gestion des versions de /etc avec Etckeeper
+# Gestion de la configuration système avec Etckeeper — Agence Frankfurt
 
-!!! Info  "Information"
-    Cette documentation est issue du [site](https://blog.stephane-robert.info/docs/outils/systeme/etckeeper/) de Stéphane Robert, spécialiste de la culture DevOps et DevSecOps. Elle a ainsi été retranscrite ici après obtention préalable de son accord. 
+## Objectif  
+Mettre en place un suivi de version automatisé du répertoire `/etc` sur l’ensemble des serveurs Debian de l’agence Frankfurt, afin de conserver une trace fiable de chaque modification de configuration système.  
+L’outil Etckeeper permet d’intégrer les changements de configuration au système de gestion de versions Git, facilitant le suivi, la restauration et la collaboration entre les administrateurs.
 
-## 1. Pourquoi mettre en place une gestion de versions du répertoire /etc ?
+---
 
-Le répertoire **/etc** contient l’ensemble des fichiers de configuration système sur une machine Linux. Cela inclut des éléments aussi critiques que la configuration réseau, les comptes utilisateurs, les services démarrés au boot, les règles de sécurité et bien plus encore. Si un fichier est accidentellement modifié ou supprimé, les conséquences peuvent être lourdes : panne réseau, impossibilité de démarrer des services essentiels, voire blocage complet du serveur.
+## 1. Présentation d’Etckeeper
 
-C’est ici que **gérer les versions du répertoire /etc avec Git via etckeeper prend tout son sens**. Voici pourquoi :
+### 1.1. Pourquoi versionner `/etc`
+Le répertoire `/etc` contient la configuration essentielle du système et des services : réseau, utilisateurs, sécurité, etc.  
+Un simple oubli, une erreur ou une mise à jour mal gérée peuvent perturber gravement un serveur.
 
-* **Historique complet des changements** : chaque modification est enregistrée, datée et associée à un auteur. Cela me permet d’identifier facilement quand et pourquoi un changement a été fait.
-* **Retour en arrière simplifié** : en cas de problème, je peux restaurer rapidement une ancienne version d’un fichier ou de l’ensemble du répertoire.
-* **Audit facilité** : lors d’une analyse de sécurité, pouvoir montrer un historique clair de la configuration est un vrai plus.
-* **Travail en équipe sécurisé** : sur des systèmes gérés par plusieurs administrateurs, cela permet d’éviter des conflits ou des erreurs silencieuses.
-* **Sauvegarde efficace** : même si ce n’est pas une sauvegarde complète du système, garder une copie versionnée de /etc est un élément clé d’une bonne stratégie de sauvegarde des fichiers _/etc_.
+Grâce à Etckeeper, il est possible de :
+- historiser toutes les modifications du répertoire `/etc` ;
+- identifier rapidement les changements récents ;
+- revenir à un état stable en cas d’erreur ;
+- synchroniser les configurations entre plusieurs serveurs de l’agence Frankfurt.
 
-## 2. Installation d'etckeeper sur Debian
+### 1.2. Fonctionnement général
+Etckeeper crée un dépôt Git directement dans le dossier `/etc`.  
+Chaque fois qu’un changement est détecté (fichier modifié, ajouté ou supprimé), un commit Git enregistre l’état du répertoire.  
+Etckeeper peut aussi être lié à APT : chaque installation ou mise à jour de paquet déclenche automatiquement un commit.
 
-```bash
-sudo apt install etckeeper
-```
+---
 
-Vérification de la présence d'etckeeper sur le système
+## 2. Installation d’Etckeeper
 
-```bash
-etckeeper --version
-```
-
-## 3. Choix du système de contrôle de version (VCS)
-
-Par défaut, Git est utilisé, ce qui est parfait pour la majorité des besoins. Si je souhaite utiliser un autre VCS (comme Mercurial ou Bazaar), je peux modifier la ligne suivante :
+Sur tous les serveurs Debian de l’agence Frankfurt :
 
 ```bash
-sudoedit /etc/etckeeper/etckeeper.conf
+sudo apt update
+sudo apt install etckeeper git -y
 ```
 
+Pendant l’installation, Etckeeper initialise automatiquement un dépôt Git dans `/etc`.
+
+---
+
+## 3. Configuration d’Etckeeper
+
+Les fichiers de configuration principaux d’Etckeeper sont :
+- `/etc/etckeeper/etckeeper.conf` : paramètres généraux ;
+- `/etc/etckeeper/commit.d/` : scripts exécutés avant chaque commit.
+
+### 3.1. Modification du fichier de configuration
+Ouvre le fichier principal :
+```bash
+sudo nano /etc/etckeeper/etckeeper.conf
+```
+
+Vérifie ou adapte les lignes suivantes :
 ```bash
 VCS="git"
+HIGHLEVEL_PACKAGE_MANAGER=apt
+LOWLEVEL_PACKAGE_MANAGER=dpkg
 ```
 
-Il est nécessaire (si cela n'a pas été fait automatiquement) d'initialiser manuellement le dépôt Git pour le répertoire _/etc_.
-
+Tu peux aussi choisir si tu veux que les commits soient automatiques :
 ```bash
+AVOID_DAILY_AUTOCOMMITS=0
+```
+0 = activer les commits quotidiens automatiques.
+
+---
+
+## 4. Premier commit
+
+Une fois installé et configuré, initialise le dépôt :
+```bash
+cd /etc
 sudo etckeeper init
-sudo etckeeper commit "Commit inital pour /etc"
-```
-Cela crée une première version (snapshot) de l’état actuel de tous les fichiers de configuration.
-
-## 4. Intégration de etckeeper avec le gestionnaire de paquets Debian APT
-
-L’un des grands avantages d’etckeeper est son intégration automatique avec les gestionnaires de paquets. À chaque installation, mise à jour ou suppression de paquet, un commit Git est généré pour enregistrer les modifications dans_/etc_.
-
-### 4.1 Comment çela fonctionne ?
-
-etckeeper utilise des scripts de hooks qui sont déclenchés automatiquement par le gestionnaire de paquets. À chaque opération sur les paquets, un commit automatique est réalisé si des changements sont détectés.
-
-### 4.2 Exemple pratique
-
-Quand j’installe un nouveau paquet avec _apt_ :
-
-```bash
-sudo apt install nginx
+sudo etckeeper commit "Initialisation du suivi de /etc sur le serveur Frankfurt"
 ```
 
-**etckeeper** va, en coulisses :
-
-* Effectuer un commit avant l’installation pour enregistrer l’état actuel.
-* Installer le paquet.
-* Effectuer un commit après l’installation pour capturer toute modification apportée à /etc.
-
-Je peux voir les changements avec une simple commande Git :
-
+Pour vérifier :
 ```bash
-cd /etc
-sudo git log
-```
-
-```bash
-commit acd94001bbdb8ed8c0e3196e8c760566d8b546e9 (HEAD -> master)
-Author: Stéphane ROBERT <toto@toto.com>
-Date:   Sat Apr 26 12:33:37 2025 +0000
-
-    committing changes in /etc made by "apt install nginx"
-
-    Packages with configuration changes:
-    +nginx-common 1.24.0-2ubuntu7.3 all
-
-    Package changes:
-    +nginx 1.24.0-2ubuntu7.3 amd64
-    +nginx-common 1.24.0-2ubuntu7.3 all
-```
-
-### 4.3 Activation ou désactivation des commits automatiques
-
-Dans le fichier _/etc/etckeeper/etckeeper.conf_, je peux ajuster cette option :
-
-```bash
-sudoedit /etc/etckeeper/etckeeper.conf
-```
-
-```bash
-COMMIT_AFTER_INSTALL="yes"
-```
-
-Si je préfère gérer manuellement les commits, je peux changer ce paramètre en "no".
-
-Grâce à cette automatisation des commits de configuration, je garde un historique précis sans devoir y penser à chaque manipulation de mon système.
-
-
-## 5. Gestion des métadonnées et des permissions
-
-Quand je met en place une gestion de version de _/etc_ avec etckeeper, je dois aussi penser à préserver les métadonnées des fichiers, comme les permissions, les propriétaires et les groupes. Ces informations sont essentielles pour garantir le bon fonctionnement du système après une restauration.
-
-### 5.1 Métadonnées prises en charge
-
-etckeeper s’occupe automatiquement de préserver les métadonnées essentielles, telles que :
-
-* Les permissions (chmod)
-* Les propriétaires (chown)
-* Les groupes (chgrp)
-* Les dates de modification (dans certaines configurations)
-
-Pour cela, il génère des fichiers spéciaux contenant les métadonnées à chaque commit. Ces fichiers sont stockés dans le dépôt Git sous forme de fichiers supplémentaires, comme :
-
-```bash
-.etckeeper
-.etckeeper-meta
-```
-
-### 5.2 Activation de la gestion avancée
-
-Dans le fichier de configuration _/etc/etckeeper/etckeeper.conf_, je peux vérifier cette option :
-
-```bash
-PRESERVE_METADATA="yes"
-```
-
-Elle est activée par défaut sur la plupart des distributions. Si elle est désactivée, je risque de perdre des réglages critiques après une restauration.
-
-### 5.3 Bonnes pratiques pour les métadonnées
-
-* Toujours réaliser un commit après une modification importante dans /etc pour éviter d’oublier les changements de permissions.
-* Vérifier les fichiers de métadonnées en cas de migration ou de restauration d’un système sur une nouvelle machine.
-* Restaurer avec précaution : si je fais un git checkout sur un fichier sensible, je dois m’assurer que ses permissions sont correctement rétablies.
-
-Grâce à cette gestion des permissions et des propriétaires, l’usage d’etckeeper devient fiable même pour des environnements sensibles où la moindre erreur de droit d’accès pourrait compromettre la sécurité du système.
-
-## 6. Sauvegarde et restauration des configurations
-
-L’un des principaux atouts d’etckeeper est de faciliter la sauvegarde et la restauration de la configuration système sans efforts complexes.
-
-### 6.1 Sauvegarder le répertoire /etc
-
-Pour une sauvegarde complète, je m’assure de copier non seulement les fichiers de /etc, mais aussi l’historique Git associé. Je peux utiliser une commande simple comme :
-
-```bash
-sudo tar czf etc-backup.tar.gz /etc
-```
-
-Cela inclut tout le contenu de /etc, y compris le dossier caché .git qui contient l’historique des changements. Je peux ensuite stocker cette archive sur un serveur de sauvegarde externe ou dans une solution de stockage cloud.
-
-### 6.2 Restaurer la configuration avec etckeeper
-
-En cas de problème, je peux restaurer l’archive sauvegardée :
-
-```bash
-sudo tar xzf etc-backup.tar.gz -C /
-```
-
-Puis je peux revenir à un état antérieur avec Git :
-
-```bash
-cd /etc
-sudo git log --oneline
-sudo git checkout <id_commit>
-```
-
-Cela me permet de restaurer rapidement un fichier spécifique ou l’ensemble du répertoire /etc à une date donnée.
-
-**Exemple : restaurer un fichier spécifique**
-
-Si, par exemple, j’ai cassé ma configuration nginx, je peux restaurer uniquement ce fichier.
-
-```bash
-cd /etc
-sudo git checkout HEAD^ -- nginx/nginx.conf
-```
-
-Je récupère ainsi la dernière version fonctionnelle sans affecter le reste du système.
-
-Grâce à la sauvegarde des fichiers /etc avec etckeeper, je bénéficie d’une solution fiable pour sécuriser mes configurations critiques et réduire le temps de récupération en cas d’incident.
-
-### 6.3 Restaurer des fichiers ou la totalité de /etc avec etckeeper
-
-Avec etckeeper, restaurer une ancienne version de /etc est simple grâce à Git.
-
-**Voir l’historique des changements**
-
-Listez les commits passés :
-
-```bash
-cd /etc
 sudo git log --oneline
 ```
 
-Exemple :
+---
+
+## 5. Fonctionnement automatique avec APT
+
+Etckeeper s’intègre avec le gestionnaire de paquets Debian.  
+Lorsqu’un administrateur installe ou met à jour un paquet :
 ```bash
-e2d9c24 Ajout de la config SSL nginx
-a7d0f91 Commit après update des paquets
-1f3c6b2 Commit initial
+sudo apt install <nom_du_paquet>
 ```
 
-### 6.4 Restaurer tout /etc à un état précédent
+Un commit automatique est créé :
+Exemple : “autocommit avant apt run” puis “autocommit après apt run”.
 
-Si vous voulez restaurer tout le répertoire /etc à une version antérieure :
+Cela garantit que toutes les modifications liées aux mises à jour sont historisées sans action manuelle.
 
+---
+
+## 6. Gestion manuelle des commits
+
+### 6.1. Ajouter un commit personnalisé
+Lorsqu’une modification manuelle est effectuée dans `/etc`, il est conseillé de faire un commit clair :
 ```bash
-sudo git checkout <ID_du_commit>
+cd /etc
+sudo etckeeper commit "Ajout de la configuration du serveur DNS interne"
 ```
 
-Par exemple :
-
+### 6.2. Consulter l’historique
 ```bash
-sudo git checkout a7d0f91
+cd /etc
+sudo git log --oneline --graph --decorate
 ```
 
-!!! Warning  "Attention"
-    Cela remplace l’ensemble du contenu de /etc avec l’état du commit. Pensez à faire une sauvegarde avant en cas de doute !
-
-### 6.5 Restaurer un fichier spécifique
-
-Si seule une partie doit être restaurée (ex: nginx.conf cassé) :
-
+### 6.3. Comparer les changements récents
 ```bash
-sudo git checkout <ID_du_commit> -- chemin/vers/le/fichier
+sudo git diff
 ```
 
-Exemple :
+### 6.4. Revenir à une version précédente
 ```bash
-sudo git checkout HEAD^ -- nginx/nginx.conf
+sudo git checkout <ID_commit> -- <fichier>
+```
+Exemple : revenir à une ancienne version du fichier `/etc/ssh/sshd_config`.
+
+---
+
+## 7. Sauvegarde et collaboration
+
+### 7.1. Sauvegarder le dépôt `/etc`
+Pour centraliser la configuration des serveurs Frankfurt :
+```bash
+cd /etc
+sudo git remote add origin git@github.com:agence-frankfurt/etckeeper.git
+sudo git push -u origin master
 ```
 
-Cela récupère uniquement l’ancien fichier sans toucher au reste.
+Chaque serveur peut ainsi pousser ses commits vers un dépôt Git central (interne à l’agence ou hébergé sur GitHub/Gitea).
 
-### 6.6 Annuler des changements non commités
-
-Si vous avez fait des modifications locales non désirées :
-
+### 7.2. Récupérer une configuration sur un nouveau serveur
+Sur un nouveau serveur Debian :
 ```bash
-sudo git checkout -- etc/[<dossier>/]<fichier>
+sudo apt install etckeeper git -y
+cd /etc
+sudo git clone git@github.com:agence-frankfurt/etckeeper.git .
 ```
 
-Cela annule les modifications non encore commités.
- 
+---
 
+## 8. Bonnes pratiques à l’agence Frankfurt
 
+- Effectuer un commit manuel après toute modification importante de configuration.  
+- Vérifier régulièrement l’historique avec `git log` pour identifier les changements récents.  
+- Synchroniser les dépôts `/etc` entre les serveurs afin d’uniformiser la configuration de l’agence.  
+- Sauvegarder le dépôt `/etc` sur un serveur Git interne sécurisé.  
+- Ne jamais ignorer un commit automatique : il peut contenir des modifications critiques.
 
+---
 
+## 9. Exemple d’utilisation complète
+
+1. Modification d’un fichier dans `/etc/ssh/sshd_config`.  
+2. Test et validation du service SSH :
+   ```bash
+   sudo systemctl restart ssh
+   ```
+3. Commit des changements :
+   ```bash
+   sudo etckeeper commit "Mise à jour de la configuration SSH Frankfurt"
+   ```
+4. Synchronisation vers le dépôt central :
+   ```bash
+   sudo git push
+   ```
+
+---
+
+## Résultat attendu
+
+- Tous les serveurs Debian de l’agence Frankfurt disposent d’un historique fiable des configurations.  
+- Chaque modification dans `/etc` est suivie, datée et réversible.  
+- L’équipe d’administration peut facilement identifier la source d’un problème après une mise à jour ou un changement système.
