@@ -41,7 +41,7 @@ ping <adresse_vlan>
 ```bash
 ping google.com
 ```
-![logo cub0](../../media/97.png){ align=center width="250" }
+![logo cub0](../../media/97.png){ align=center width="700" }
 
 ---
 
@@ -72,7 +72,7 @@ nmap -sV 192.168.6.126
 ```bash
 nmap -sU 192.168.6.126
 ```
-![logo cub0](../../media/98.png){ align=center width="250" }
+![logo cub0](../../media/98.png){ align=center width="700" }
 
 ---
 
