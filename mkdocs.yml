@@ -50,6 +50,7 @@ nav:
 
           - Administration des services:
               - Situation1 - AdminServ - CUB: CUB/Documentation/AdminServ/Situation1-AdminServ-CUB.md
+              - Situation2 - AdminServ - CUB: CUB/Documentation/AdminServ/Situation2-AdminServ-CUB.md
               - Linux:
                   - Authentification TOTP sur Debian: CUB/Documentation/AdminServ/Linux/2--OTP.md
               - Versioning:
