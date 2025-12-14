@@ -294,4 +294,4 @@ Accès :
 ```
 http://scanner1.frankfurt.cub.sioplc.fr
 ```
-![logo cub0](../../media/114.png){ align=center width="250" }
+![logo cub0](../../media/114.png){ align=center width="700" }
