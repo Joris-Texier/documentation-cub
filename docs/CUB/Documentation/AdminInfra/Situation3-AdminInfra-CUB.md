@@ -91,8 +91,6 @@ La création de **trois sous-réseaux distincts** permet d’améliorer la sécu
 ---
 
 ## Maquette Packet Tracer
-
-Configuration des switches et du routeur CUB.
 [Configuration des switch et routeur CUB](https://drive.google.com/drive/folders/1GXBigqVqaa86_AFHlSA7-2rDH3MePCTA?usp=sharing){:target="_blank"}
 
 ![logo cub0](../../media/101.png){ align=center width="700" }
