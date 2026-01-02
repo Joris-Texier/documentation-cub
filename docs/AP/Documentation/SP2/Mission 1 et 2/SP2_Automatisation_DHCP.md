@@ -9,7 +9,7 @@ Date de rédaction : 10 novembre 2025
 ## SOMMAIRE
 
 1. [Mission 1 : Proposer une version du script « AutomatisationDHCP.sh »](#Mission-1-Proposer-une-version-du-script-«-AutomatisationDHCP.sh-»)
-2. [Script AutomatisationDHCP.sh (version simplifiée et commentée)](#Script-AutomatisationDHCP.sh-(version simplifiée-et-commentée)
+2. [Script AutomatisationDHCP.sh (version simplifiée et commentée)](#Script-AutomatisationDHCP.sh-version-simplifiée-et-commentée)
 
 ---
 
