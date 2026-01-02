@@ -83,8 +83,7 @@ nav:
               - Mission 3 - Mise en place d’un serveur GLPI: AP/Documentation/SP0/Mission 3/SP0_Mission3_GLPI.md
               - Mission 4 - Mise en place d’une partie de l’architecture réseau: AP/Documentation/SP0/Mission 4/SP0_Mission4_Architecture_Reseau.md
           - SP2:
-              - Mission 1: AP/Documentation/SP2/Mission 1/[]
-              - Mission 2: AP/Documentation/SP2/Mission 2/[]
+              - Mission 1 et 2 - Automatisation de la configuration du DHCP: AP/Documentation/SP2/Mission 1 et 2/SP2_Automatisation_DHCP.md
 
 markdown_extensions:
   - toc:
