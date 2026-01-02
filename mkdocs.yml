@@ -84,6 +84,8 @@ nav:
               - Mission 4 - Mise en place d’une partie de l’architecture réseau: AP/Documentation/SP0/Mission 4/SP0_Mission4_Architecture_Reseau.md
           - SP2:
               - Mission 1 et 2 - Automatisation de la configuration du DHCP: AP/Documentation/SP2/Mission 1 et 2/SP2_Automatisation_DHCP.md
+          - SP7:
+              - Mission 1 - comparer 3 solutions de bastion et arrêter votre choix en le justifiant: AP/Documentation/SP7/Mission 1/SP7 Remediation - Mission 1 - comparer 3 solutions de bastion et arrêter votre choix en le justifiant.md
 
 markdown_extensions:
   - toc:
