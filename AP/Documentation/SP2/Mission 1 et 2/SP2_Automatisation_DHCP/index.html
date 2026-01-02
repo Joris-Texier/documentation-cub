@@ -1,0 +1,1494 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://joris-texier.github.io/documentation-cub/AP/Documentation/SP2/Mission%201%20et%202/SP2_Automatisation_DHCP/">
+      
+      
+        <link rel="prev" href="../../../SP0/Mission%204/SP0_Mission4_Architecture_Reseau/">
+      
+      
+        <link rel="next" href="../../../SP7/Mission%201/SP7%20Remediation%20-%20Mission%201%20-%20comparer%203%20solutions%20de%20bastion%20et%20arr%C3%AAter%20votre%20choix%20en%20le%20justifiant/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../media/logo_site.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Mission 1 et 2 - Automatisation de la configuration du DHCP - Le contexte CUB et AP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sommaire" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../../../.." title="Le contexte CUB et AP" class="md-header__button md-logo" aria-label="Le contexte CUB et AP" data-md-component="logo">
+      
+  <img src="../../../../../media/logo_site.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Le contexte CUB et AP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mission 1 et 2 - Automatisation de la configuration du DHCP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Basculer en mode sombre"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Basculer en mode sombre" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../CUB/Contexte/01-presentation/" class="md-tabs__link">
+          
+  
+  
+  CUB
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../Contexte/Contexte%20AP/Contexte_Epoka/" class="md-tabs__link">
+          
+  
+  
+  AP
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Le contexte CUB et AP" class="md-nav__button md-logo" aria-label="Le contexte CUB et AP" data-md-component="logo">
+      
+  <img src="../../../../../media/logo_site.png" alt="logo">
+
+    </a>
+    Le contexte CUB et AP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../../../CUB/Contexte/01-presentation/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUB
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contexte
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/Contexte%20AP/Contexte_Epoka/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte général EPOKA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/Contexte%20SP0/Contexte_SP0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte SP0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contexte/Contexte%20SP2/Contexte_SP2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte SP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../SP0/Mission%201/SP0_Mission1_Adapter_Plan_Adressage/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SP0
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SP2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SP2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mission 1 et 2 - Automatisation de la configuration du DHCP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mission 1 et 2 - Automatisation de la configuration du DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sommaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SOMMAIRE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mission-1-proposer-une-version-du-script-automatisationdhcpsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mission 1 : Proposer une version du script « AutomatisationDHCP.sh »
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mission 1 : Proposer une version du script « AutomatisationDHCP.sh »">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-automatisationdhcpsh-version-simplifiee-et-commentee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script AutomatisationDHCP.sh (version simplifiée et commentée)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mission-2-verifier-sur-le-prototype-lautomatisation-et-la-distribution-des-parametres-reseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mission 2 : Vérifier sur le prototype l’automatisation et la distribution des paramètres réseau
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mission 2 : Vérifier sur le prototype l’automatisation et la distribution des paramètres réseau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commande-a-executer-pour-lancer-le-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commande à exécuter pour lancer le script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifications-cote-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vérifications côté serveur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifications-cote-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vérifications côté client
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../SP7/Mission%201/SP7%20Remediation%20-%20Mission%201%20-%20comparer%203%20solutions%20de%20bastion%20et%20arr%C3%AAter%20votre%20choix%20en%20le%20justifiant/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SP7
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sommaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SOMMAIRE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mission-1-proposer-une-version-du-script-automatisationdhcpsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mission 1 : Proposer une version du script « AutomatisationDHCP.sh »
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mission 1 : Proposer une version du script « AutomatisationDHCP.sh »">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-automatisationdhcpsh-version-simplifiee-et-commentee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script AutomatisationDHCP.sh (version simplifiée et commentée)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mission-2-verifier-sur-le-prototype-lautomatisation-et-la-distribution-des-parametres-reseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mission 2 : Vérifier sur le prototype l’automatisation et la distribution des paramètres réseau
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mission 2 : Vérifier sur le prototype l’automatisation et la distribution des paramètres réseau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commande-a-executer-pour-lancer-le-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commande à exécuter pour lancer le script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifications-cote-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vérifications côté serveur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifications-cote-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vérifications côté client
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sp2-remediation-mission-1-et-2-automatisation-de-la-configuration-du-dhcp">SP2 Remediation - Mission 1 et 2 - Automatisation de la configuration du DHCP<a class="headerlink" href="#sp2-remediation-mission-1-et-2-automatisation-de-la-configuration-du-dhcp" title="Permanent link">&para;</a></h1>
+<p><img align="center" alt="logo EPOKA" src="../../../../media/logo.png" width="250" /></p>
+<p>Présenté par Joris Texier<br />
+Version : 1<br />
+Date de rédaction : 10 novembre 2025  </p>
+<hr />
+<h2 id="sommaire">SOMMAIRE<a class="headerlink" href="#sommaire" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#Mission-1-Proposer-une-version-du-script-«-AutomatisationDHCP.sh-»">Mission 1 : Proposer une version du script « AutomatisationDHCP.sh »</a></li>
+<li><a href="#Script-AutomatisationDHCP.sh-version-simplifiée-et-commentée">Script AutomatisationDHCP.sh (version simplifiée et commentée)</a></li>
+<li><a href="#Explication-du-fonctionnement">Explication du fonctionnement</a></li>
+<li><a href="#[Mission-2-Vérifier-sur-le-prototype-lautomatisation-et-la-distribution-des-paramètres-réseau">Mission 2 : Vérifier sur le prototype l’automatisation et la distribution des paramètres réseau</a></li>
+<li><a href="#Commande-à-exécuter-pour-lancer-le-script">Commande à exécuter pour lancer le script</a></li>
+<li><a href="#Vérifications-côté-serveur">Vérifications côté serveur</a></li>
+<li><a href="#Vérifications-côté-client">Vérifications côté client</a></li>
+<li><a href="#Conclusion">Conclusion</a></li>
+</ol>
+<hr />
+<h2 id="mission-1-proposer-une-version-du-script-automatisationdhcpsh">Mission 1 : Proposer une version du script « AutomatisationDHCP.sh »<a class="headerlink" href="#mission-1-proposer-une-version-du-script-automatisationdhcpsh" title="Permanent link">&para;</a></h2>
+<p>Objectif : Automatiser la configuration du serveur DHCP en utilisant Kea DHCP (version moderne remplaçant ISC DHCP, aujourd’hui déprécié). Le but est de créer un script simple, commenté et fonctionnel permettant de générer automatiquement un fichier de configuration JSON Kea valide.</p>
+<h3 id="script-automatisationdhcpsh-version-simplifiee-et-commentee">Script AutomatisationDHCP.sh (version simplifiée et commentée)<a class="headerlink" href="#script-automatisationdhcpsh-version-simplifiee-et-commentee" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env bash</span>
+<span class="c1"># =====================================================================</span>
+<span class="c1"># Script : AutomatisationDHCP.sh</span>
+<span class="c1"># Objet  : Générer simplement une configuration DHCPv4 pour KEA (JSON)</span>
+<span class="c1"># Note   : Tous les messages &quot;humains&quot; partent sur stderr (&gt;&amp;2) pour</span>
+<span class="c1"># ne jamais polluer le JSON écrit dans le fichier.</span>
+<span class="c1"># =====================================================================</span>
+
+<span class="c1"># Active des options de sécurité strictes :</span>
+<span class="c1"># -e  : stoppe le script si une commande échoue</span>
+<span class="c1"># -u  : interdit l’utilisation de variables non définies</span>
+<span class="c1"># -o pipefail : considère un pipe | (permet de rediriger la sortie (stdout) d’une commande vers l’entrée (stdin) d’une autre commande.) comme raté si une commande échoue</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+
+<span class="c1"># Variable contenant l&#39;emplacement du fichier de configuration Kea DHCP4</span>
+<span class="nv">CONFIG_FILE</span><span class="o">=</span><span class="s2">&quot;/etc/kea/kea-dhcp4.conf&quot;</span>
+
+<span class="c1"># Vérifie si la commande kea-dhcp4 existe, sinon affiche une erreur et quitte</span>
+<span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>kea-dhcp4<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;kea-dhcp4 introuvable&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+<span class="c1"># Début de la fonction de validation d&#39;adresse IPv4</span>
+validate_ip<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="c1"># Vérifie que l’adresse IP respecte le format x.x.x.x</span>
+<span class="w">  </span><span class="o">[[</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">([</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">1</span>,3<span class="o">}</span><span class="se">\.</span><span class="o">){</span><span class="m">3</span><span class="o">}[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">1</span>,3<span class="o">}</span>$<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="c1"># Sépare l’adresse en 4 octets</span>
+<span class="w">  </span><span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>a<span class="w"> </span>b<span class="w"> </span>c<span class="w"> </span>d<span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="c1"># Vérifie que chaque octet est un nombre entre 0 et 255</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span>o<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$a</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$b</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$c</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$d</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$o</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">[</span><span class="m">0</span>-9<span class="o">]</span>+$<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="o">((</span><span class="w"> </span>o&gt;<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>o&lt;<span class="o">=</span><span class="m">255</span><span class="w"> </span><span class="o">))</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="k">done</span>
+<span class="w">  </span><span class="c1"># Retourne succès si tout est valide</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="o">}</span>
+
+<span class="c1"># Début de la fonction de validation d’un réseau au format CIDR</span>
+validate_cidr<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="c1"># Extrait l’adresse IP avant le /</span>
+<span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">ip</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">%/*</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="nv">pfx</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">#*/</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="c1"># Vérifie que l’entrée contient bien un /</span>
+<span class="w">  </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>*/*<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="c1"># Valide la partie adresse IP</span>
+<span class="w">  </span>validate_ip<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ip</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="c1"># Vérifie que le préfixe est un nombre à 1 ou 2 chiffres</span>
+<span class="w">  </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$pfx</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">1</span>,2<span class="o">}</span>$<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="c1"># Vérifie que le préfixe est compris entre 1 et 30</span>
+<span class="w">  </span><span class="o">((</span><span class="w"> </span>pfx&gt;<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pfx&lt;<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="o">))</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="c1"># Retourne succès si tout est correct</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="o">}</span>
+
+<span class="c1"># Questions globales</span>
+<span class="c1"># Boucle demandant une IP DNS jusqu’à obtenir une IP valide</span>
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nb">read</span><span class="w"> </span>-rp<span class="w"> </span><span class="s2">&quot;DNS (IP) à distribuer (ex: 192.168.6.10) : &quot;</span><span class="w"> </span>DNS
+<span class="w">  </span>validate_ip<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DNS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;IP invalide&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="k">done</span>
+<span class="c1"># Demande le nom de domaine une seule fois</span>
+<span class="nb">read</span><span class="w"> </span>-rp<span class="w"> </span><span class="s2">&quot;Nom de domaine (ex: local.epoka6.lan) : &quot;</span><span class="w"> </span>DOMAIN
+
+<span class="c1"># Boucle demandant le nombre d’étendues DHCP à créer jusqu&#39;à obtenir un entier valide</span>
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nb">read</span><span class="w"> </span>-rp<span class="w"> </span><span class="s2">&quot;Nombre d&#39;étendues DHCP à créer : &quot;</span><span class="w"> </span>N
+<span class="w">  </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$N</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">[</span><span class="m">1</span>-9<span class="o">][</span><span class="m">0</span>-9<span class="o">]</span>*$<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Nombre invalide&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="k">done</span>
+
+<span class="c1"># Écriture du JSON Kea (stdout) vers le fichier (redirection finale)</span>
+<span class="c1"># Tout le bloc entre { … } sera redirigé vers CONFIG_FILE</span>
+<span class="o">{</span>
+<span class="w">  </span><span class="c1"># Première partie du JSON générée via un here-document</span>
+<span class="w">  </span>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;JSON_HEAD&#39;</span>
+<span class="s">{</span>
+<span class="s">  &quot;Dhcp4&quot;: {</span>
+<span class="s">    &quot;interfaces-config&quot;: { &quot;interfaces&quot;: [&quot;*&quot;] },</span>
+<span class="s">    &quot;lease-database&quot;: { &quot;type&quot;: &quot;memfile&quot;, &quot;name&quot;: &quot;/var/lib/kea/kea-leases4.csv&quot; },</span>
+<span class="s">JSON_HEAD</span>
+
+<span class="w">  </span><span class="c1"># Insertion dynamique des options DNS et domaine dans le JSON</span>
+<span class="w">  </span>cat<span class="w"> </span><span class="s">&lt;&lt;JSON_GLOBAL</span>
+<span class="s">    &quot;option-data&quot;: [</span>
+<span class="s">      { &quot;name&quot;: &quot;domain-name-servers&quot;, &quot;code&quot;: 6, &quot;space&quot;: &quot;dhcp4&quot;, &quot;csv-format&quot;: true, &quot;data&quot;: &quot;${DNS}&quot; },</span>
+<span class="s">      { &quot;name&quot;: &quot;domain-name&quot;, &quot;code&quot;: 15, &quot;space&quot;: &quot;dhcp4&quot;, &quot;csv-format&quot;: true, &quot;data&quot;: &quot;${DOMAIN}&quot; }</span>
+<span class="s">    ],</span>
+<span class="s">    &quot;valid-lifetime&quot;: 7200,</span>
+<span class="s">    &quot;renew-timer&quot;: 600,</span>
+<span class="s">    &quot;rebind-timer&quot;: 900,</span>
+<span class="s">    &quot;subnet4&quot;: [</span>
+<span class="s">JSON_GLOBAL</span>
+
+<span class="w">  </span><span class="c1"># Boucle de génération des blocs JSON pour chaque étendue DHCP</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i&lt;<span class="o">=</span>N<span class="p">;</span><span class="w"> </span>i++<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="c1"># Affiche dans stderr quelle étendue est en cours</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Étendue </span><span class="nv">$i</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="nv">local_subnet</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="c1"># Demande du sous-réseau CIDR, avec validation</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">      </span><span class="nb">read</span><span class="w"> </span>-rp<span class="w"> </span><span class="s2">&quot;  Sous-réseau (CIDR, ex: 192.168.6.64/26) : &quot;</span><span class="w"> </span>local_subnet
+<span class="w">      </span>validate_cidr<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$local_subnet</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  CIDR invalide&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="c1"># Initialisation des variables concernant la plage IP</span>
+<span class="w">    </span><span class="nv">local_start</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span><span class="w"> </span><span class="nv">local_end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span><span class="w"> </span><span class="nv">local_gw</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span><span class="w"> </span><span class="nv">local_name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="c1"># Demande IP de début de plage</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">      </span><span class="nb">read</span><span class="w"> </span>-rp<span class="w"> </span><span class="s2">&quot;  Début de plage (ex: 192.168.6.66) : &quot;</span><span class="w"> </span>local_start
+<span class="w">      </span>validate_ip<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$local_start</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  IP invalide&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="c1"># Demande IP de fin de plage</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">      </span><span class="nb">read</span><span class="w"> </span>-rp<span class="w"> </span><span class="s2">&quot;  Fin de plage (ex: 192.168.6.126) : &quot;</span><span class="w"> </span>local_end
+<span class="w">      </span>validate_ip<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$local_end</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  IP invalide&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="c1"># Demande l&#39;adresse IP de la passerelle</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">      </span><span class="nb">read</span><span class="w"> </span>-rp<span class="w"> </span><span class="s2">&quot;  Passerelle (ex: 192.168.6.65) : &quot;</span><span class="w"> </span>local_gw
+<span class="w">      </span>validate_ip<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$local_gw</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  IP invalide&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="c1"># Demande d’un commentaire pour nommer l’étendue</span>
+<span class="w">    </span><span class="nb">read</span><span class="w"> </span>-rp<span class="w"> </span><span class="s2">&quot;  Nom de l&#39;étendue (commentaire) : &quot;</span><span class="w"> </span>local_name
+
+<span class="w">    </span><span class="c1"># Si ce n’est pas la dernière étendue, on ajoute une virgule après l&#39;objet JSON</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">((</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>N<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span>cat<span class="w"> </span><span class="s">&lt;&lt;JSON_SUBNET</span>
+<span class="s">      {</span>
+<span class="s">        &quot;comment&quot;: &quot;$local_name&quot;,</span>
+<span class="s">        &quot;subnet&quot;: &quot;$local_subnet&quot;,</span>
+<span class="s">        &quot;pools&quot;: [ { &quot;pool&quot;: &quot;$local_start - $local_end&quot; } ],</span>
+<span class="s">        &quot;option-data&quot;: [</span>
+<span class="s">          { &quot;name&quot;: &quot;routers&quot;, &quot;code&quot;: 3, &quot;space&quot;: &quot;dhcp4&quot;, &quot;csv-format&quot;: true, &quot;data&quot;: &quot;$local_gw&quot; }</span>
+<span class="s">        ]</span>
+<span class="s">      },</span>
+<span class="s">JSON_SUBNET</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">      </span><span class="c1"># Dernière étendue : pas de virgule finale pour respecter le format JSON</span>
+<span class="w">      </span>cat<span class="w"> </span><span class="s">&lt;&lt;JSON_SUBNET_LAST</span>
+<span class="s">      {</span>
+<span class="s">        &quot;comment&quot;: &quot;$local_name&quot;,</span>
+<span class="s">        &quot;subnet&quot;: &quot;$local_subnet&quot;,</span>
+<span class="s">        &quot;pools&quot;: [ { &quot;pool&quot;: &quot;$local_start - $local_end&quot; } ],</span>
+<span class="s">        &quot;option-data&quot;: [</span>
+<span class="s">          { &quot;name&quot;: &quot;routers&quot;, &quot;code&quot;: 3, &quot;space&quot;: &quot;dhcp4&quot;, &quot;csv-format&quot;: true, &quot;data&quot;: &quot;$local_gw&quot; }</span>
+<span class="s">        ]</span>
+<span class="s">      }</span>
+<span class="s">JSON_SUBNET_LAST</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">  </span><span class="k">done</span>
+
+<span class="w">  </span><span class="c1"># Fin du JSON : fermeture du tableau subnet4 et de l’objet principal</span>
+<span class="w">  </span>cat<span class="w"> </span><span class="s">&lt;&lt;&#39;JSON_TAIL&#39;</span>
+<span class="s">    ]</span>
+<span class="s">  }</span>
+<span class="s">}</span>
+<span class="s">JSON_TAIL</span>
+<span class="c1"># Fermeture du bloc redirigé vers le fichier Kea</span>
+<span class="o">}</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONFIG_FILE</span><span class="s2">&quot;</span>
+
+<span class="c1"># Affiche le chemin du fichier écrit (stderr)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Fichier écrit : </span><span class="nv">$CONFIG_FILE</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+
+<span class="c1"># Teste la validité syntaxique du JSON généré</span>
+kea-dhcp4<span class="w"> </span>-t<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONFIG_FILE</span><span class="s2">&quot;</span>
+<span class="c1"># Indique que la syntaxe est correcte</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Syntaxe OK&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+
+<span class="c1"># Vérifie si systemctl est disponible pour gérer le service Kea</span>
+<span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>systemctl<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="c1"># Redémarre le service Kea via systemctl</span>
+<span class="w">  </span>systemctl<span class="w"> </span>restart<span class="w"> </span>kea-dhcp4-server<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">  </span><span class="c1"># Affiche le statut du service</span>
+<span class="w">  </span>systemctl<span class="w"> </span>status<span class="w"> </span>--no-pager<span class="w"> </span>kea-dhcp4-server<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="c1"># Méthode alternative pour les systèmes sans systemd</span>
+<span class="w">  </span>service<span class="w"> </span>kea-dhcp4-server<span class="w"> </span>restart<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+<span class="k">fi</span>
+
+<span class="c1"># Message final indiquant que tout est terminé</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Terminé.&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+</code></pre></div>
+<p>Validation et redémarrage du service</p>
+<p>kea-dhcp4 -t "$CONFIG_FILE"   # Teste la validité du fichier JSON
+systemctl restart kea-dhcp4-server
+systemctl status --no-pager kea-dhcp4-server</p>
+<p><img align="center" alt="logo EPOKA" src="../../../../media/123.png" width="700" /></p>
+<p>Explication du fonctionnement</p>
+<ul>
+<li>Le script demande les informations DNS, domaine et sous-réseaux.  </li>
+<li>Il génère automatiquement un fichier de configuration JSON Kea complet.  </li>
+<li>Il teste la validité du fichier avec <code>kea-dhcp4 -t</code>.  </li>
+<li>Il redémarre le service Kea pour appliquer la nouvelle configuration.  </li>
+</ul>
+<hr />
+<h2 id="mission-2-verifier-sur-le-prototype-lautomatisation-et-la-distribution-des-parametres-reseau">Mission 2 : Vérifier sur le prototype l’automatisation et la distribution des paramètres réseau<a class="headerlink" href="#mission-2-verifier-sur-le-prototype-lautomatisation-et-la-distribution-des-parametres-reseau" title="Permanent link">&para;</a></h2>
+<p>Objectif : Vérifier que le serveur Kea distribue bien les paramètres réseau (adresse IP, DNS, passerelle et domaine) aux clients DHCP via le script généré.</p>
+<h3 id="commande-a-executer-pour-lancer-le-script">Commande à exécuter pour lancer le script<a class="headerlink" href="#commande-a-executer-pour-lancer-le-script" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./Automatisation.sh
+</code></pre></div>
+<h3 id="verifications-cote-serveur">Vérifications côté serveur<a class="headerlink" href="#verifications-cote-serveur" title="Permanent link">&para;</a></h3>
+<p>Commandes exécutées :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>kea-dhcp4<span class="w"> </span>-t<span class="w"> </span>/etc/kea/kea-dhcp4.conf
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>--no-pager<span class="w"> </span>kea-dhcp4-server
+sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>kea-dhcp4-server<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>--no-pager
+sudo<span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>/var/lib/kea/kea-leases4.csv
+</code></pre></div>
+<p>Résultat attendu :<br />
+- Le service kea-dhcp4-server est actif et indique le sous-réseau ajouté.<br />
+- Le fichier kea-leases4.csv contient les adresses attribuées.  </p>
+<p><img align="center" alt="logo EPOKA" src="../../../../media/124.png" width="700" /></p>
+<p><img align="center" alt="logo EPOKA" src="../../../../media/125.png" width="700" /></p>
+<p><img align="center" alt="logo EPOKA" src="../../../../media/126.png" width="700" /></p>
+<p><img align="center" alt="logo EPOKA" src="../../../../media/127.png" width="700" /></p>
+<hr />
+<h3 id="verifications-cote-client">Vérifications côté client<a class="headerlink" href="#verifications-cote-client" title="Permanent link">&para;</a></h3>
+<p>Commandes exécutées :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dhclient<span class="w"> </span>-r<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>dhclient<span class="w"> </span>-v
+ip<span class="w"> </span>-4<span class="w"> </span>addr<span class="w"> </span>show
+ip<span class="w"> </span>route
+resolvectl<span class="w"> </span>status
+</code></pre></div>
+<p>Résultat attendu :<br />
+- Le client obtient une adresse IP dans la plage configurée.<br />
+- Le DNS et le domaine transmis par Kea apparaissent dans resolvectl status.  </p>
+<p><img align="center" alt="logo EPOKA" src="../../../../media/128.png" width="700" /></p>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Le script d’automatisation DHCP Kea est fonctionnel. Les tests côté serveur et client montrent que les paramètres réseau sont correctement distribués. La configuration JSON est valide et le service Kea s’exécute sans erreur. Les baux sont bien enregistrés dans /var/lib/kea/kea-leases4.csv, confirmant le bon fonctionnement de l’automatisation.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Dernière mise à jour">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    2026-01-02
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["content.code.copy", "navigation.instant", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.prune", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
