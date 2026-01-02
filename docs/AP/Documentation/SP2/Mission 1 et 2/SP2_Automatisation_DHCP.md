@@ -1,5 +1,4 @@
-## SP2 :  
-# Automatisation de la configuration du DHCP  
+## SP2 - Mission 1 et 2 Automatisation de la configuration du DHCP  
 ![logo EPOKA](../../../../media/logo.png){ align=center width="250" }
 
 Présenté par Joris Texier  
