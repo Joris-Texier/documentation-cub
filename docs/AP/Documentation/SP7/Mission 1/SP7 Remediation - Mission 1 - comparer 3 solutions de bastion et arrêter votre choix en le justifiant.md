@@ -1,5 +1,4 @@
 # SP7 Remediation - Mission 1 - comparer 3 solutions de bastion et arrêter votre choix en le justifiant
-# Comparer 3 solutions de bastion et arrêter votre choix en le justifiant
 
 ![logo EPOKA](../../../../media/logo.png){ align=center width="250" }
 
