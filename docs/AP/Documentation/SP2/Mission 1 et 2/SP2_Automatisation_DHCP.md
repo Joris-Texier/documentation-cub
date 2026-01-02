@@ -205,7 +205,8 @@ fi
 echo "Terminé." >&2
 ```
 
-# Validation et redémarrage du service
+Validation et redémarrage du service
+
 kea-dhcp4 -t "$CONFIG_FILE"   # Teste la validité du fichier JSON
 systemctl restart kea-dhcp4-server
 systemctl status --no-pager kea-dhcp4-server
@@ -214,7 +215,7 @@ systemctl status --no-pager kea-dhcp4-server
 
 
 
-# Explication du fonctionnement
+Explication du fonctionnement
 
 - Le script demande les informations DNS, domaine et sous-réseaux.  
 - Il génère automatiquement un fichier de configuration JSON Kea complet.  
