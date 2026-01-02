@@ -9,14 +9,7 @@ Date de rédaction : 10 novembre 2025
 ## SOMMAIRE
 
 1. [Mission 1 : Proposer une version du script « AutomatisationDHCP.sh »](#Mission-1-Proposer-une-version-du-script-«-AutomatisationDHCP.sh-»)
-2. Script AutomatisationDHCP.sh (version simplifiée et commentée)  
-3. Explication du fonctionnement  
-
-4. Mission 2 : Vérifier sur le prototype l’automatisation et la distribution des paramètres réseau  
-5. Commande à exécuter pour lancer le script  
-6. Vérifications côté serveur  
-7. Vérifications côté client  
-8. Conclusion  
+2. [Script AutomatisationDHCP.sh (version simplifiée et commentée)](#Script-AutomatisationDHCP.sh-(version simplifiée-et-commentée)
 
 ---
 
